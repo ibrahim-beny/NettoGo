@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,44 +10,112 @@
   }
   
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply bg-slate-50 text-slate-900 antialiased;
   }
 }
 
 @layer components {
+  /* Modern Form Components */
   .input-field {
-    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200;
+    @apply w-full px-4 py-4 border-2 border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 text-lg font-medium bg-white hover:border-slate-300;
   }
   
+  .input-field:focus {
+    @apply outline-none;
+  }
+  
+  /* Modern Buttons */
   .btn-primary {
-    @apply bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-200 focus:ring-4 focus:ring-blue-500/20 focus:ring-offset-0 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none;
   }
   
   .btn-secondary {
-    @apply bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-3 px-6 rounded-lg transition-colors duration-200 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
+    @apply bg-gradient-to-r from-slate-100 to-slate-200 hover:from-slate-200 hover:to-slate-300 text-slate-700 font-medium py-4 px-8 rounded-2xl transition-all duration-200 focus:ring-4 focus:ring-slate-500/20 focus:ring-offset-0 border border-slate-300/50 hover:shadow-md active:scale-95;
   }
   
+  /* Modern Cards */
   .card {
-    @apply bg-white rounded-xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow duration-300;
+    @apply bg-white/70 backdrop-blur-xl rounded-3xl border border-white/50 shadow-2xl shadow-slate-200/50 p-8 hover:shadow-3xl transition-all duration-300;
   }
   
+  .card-hover {
+    @apply hover:shadow-2xl hover:scale-105 transition-all duration-300;
+  }
+  
+  /* Form Components */
   .form-group {
-    @apply space-y-2;
+    @apply space-y-3;
   }
   
   .form-label {
-    @apply block text-sm font-medium text-gray-700;
+    @apply block text-sm font-semibold text-slate-700;
   }
   
   .form-error {
-    @apply text-sm text-error-600 mt-1;
+    @apply text-sm text-red-600 mt-2 flex items-center gap-2;
   }
   
+  /* Result Components */
   .result-highlight {
-    @apply text-5xl font-bold bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent;
+    @apply text-5xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent;
   }
   
   .result-secondary {
-    @apply text-lg text-gray-600;
+    @apply text-lg text-slate-600 font-medium;
+  }
+  
+  /* Modern Checkbox */
+  .checkbox-modern {
+    @apply w-5 h-5 text-blue-600 bg-white border-2 border-slate-300 rounded-lg focus:ring-4 focus:ring-blue-500/20 focus:ring-offset-0 focus:border-blue-500 transition-all duration-200;
+  }
+  
+  /* Glassmorphism Effects */
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/50;
+  }
+  
+  .glass-dark {
+    @apply bg-slate-900/80 backdrop-blur-xl border border-slate-700/50;
+  }
+  
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-slate-800 via-blue-800 to-purple-800 bg-clip-text text-transparent;
+  }
+  
+  .gradient-text-green {
+    @apply bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent;
+  }
+  
+  /* Modern Shadows */
+  .shadow-modern {
+    @apply shadow-2xl shadow-slate-200/50;
+  }
+  
+  .shadow-modern-hover {
+    @apply hover:shadow-3xl hover:shadow-slate-300/50;
+  }
+  
+  /* Smooth Transitions */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .transition-fast {
+    @apply transition-all duration-200 ease-out;
+  }
+  
+  /* Focus States */
+  .focus-modern {
+    @apply focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:ring-offset-0;
+  }
+  
+  /* Hover Effects */
+  .hover-lift {
+    @apply hover:transform hover:scale-105 hover:-translate-y-1;
+  }
+  
+  .hover-glow {
+    @apply hover:shadow-lg hover:shadow-blue-500/25;
   }
 }
