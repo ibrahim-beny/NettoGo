@@ -1,0 +1,828 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Product Requirements Document</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="24b31667-0d38-8093-9fb0-ea508c23ffbc" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📖</span></div><h1 class="page-title">Product Requirements Document</h1><p class="page-description"></p></header><div class="page-body"><h2 id="24b31667-0d38-80fb-ba7f-d844d5f56f3f" class="">Requirements</h2><h3 id="24b31667-0d38-8025-8917-e84af6ea2fc3" class=""><strong>Functionele requirements</strong></h3><ol type="1" id="24b31667-0d38-8016-b26b-c0563ef683d4" class="numbered-list" start="1"><li><strong>Volledige berekening in de browser</strong><p id="24b31667-0d38-80b3-8481-fead928b9b67" class="">Alle bruto-netto berekeningen gebeuren 100% client-side, zonder dat er data naar een server of API wordt gestuurd. Dit zorgt voor privacy en snelheid.</p></li></ol><ol type="1" id="24b31667-0d38-8019-bc29-c794622dfa6f" class="numbered-list" start="2"><li><strong>Invoer van bruto salaris en extra parameters</strong><p id="24b31667-0d38-8060-9b50-d6f6ec8e7c87" class="">Gebruiker kan invoeren:</p><ul id="24b31667-0d38-8014-b64f-fda99a32748f" class="bulleted-list"><li style="list-style-type:disc">bruto maandsalaris</li></ul><ul id="24b31667-0d38-8012-85f4-e1b2020e0a1d" class="bulleted-list"><li style="list-style-type:disc">leeftijd</li></ul><ul id="24b31667-0d38-808e-aa55-eb27857229c1" class="bulleted-list"><li style="list-style-type:disc">arbeidsduur (uren per week)</li></ul><ul id="24b31667-0d38-803b-a226-c8c78b09b465" class="bulleted-list"><li style="list-style-type:disc">vakantiegeld (checkbox, want is altijd 8%)</li></ul><ul id="24b31667-0d38-801f-bde2-e9f2722ffa90" class="bulleted-list"><li style="list-style-type:disc">pensioenbijdrage (%)</li></ul><ul id="24b31667-0d38-8019-a85e-d0595ebe9c75" class="bulleted-list"><li style="list-style-type:disc">13e maand (checkbox)</li></ul></li></ol><ol type="1" id="24b31667-0d38-8015-9828-c3a568d15021" class="numbered-list" start="3"><li><strong>Directe weergave netto maandbedrag</strong><p id="24b31667-0d38-8072-bf0f-e3c9b5701d47" class="">De netto maandwaarde wordt onmiddellijk getoond zodra de gebruiker gegevens invoert of wijzigt, zonder pagina herladen.</p></li></ol><ol type="1" id="24b31667-0d38-80b4-8eb9-c29a9fb3f1fa" class="numbered-list" start="4"><li><strong>Validatie en foutmeldingen</strong><p id="24b31667-0d38-80c0-a5a1-f336f9f20fc4" class="">Ongeldige invoer (bijv. letters in salarisveld of negatieve getallen) wordt meteen gesignaleerd met begrijpelijke foutmeldingen, zodat gebruiker weet wat er fout gaat.</p></li></ol><ol type="1" id="24b31667-0d38-80ff-a82c-ee9e9f0bb172" class="numbered-list" start="5"><li><strong>Responsief ontwerp</strong><p id="24b31667-0d38-80d9-be34-d6638d1ca127" class="">De app werkt vloeiend en ziet er goed uit op mobiel (voornamelijk), tablet én desktop.</p></li></ol><ol type="1" id="24b31667-0d38-80f5-ad78-f825aa447017" class="numbered-list" start="6"><li><strong>Toekomstbestendig voor SEO en uitbreiding</strong><p id="24b31667-0d38-80f9-aa4f-e6a258020ec1" class="">De app is zo gebouwd dat later gemakkelijk blogpagina’s kunnen worden toegevoegd, en dat SEO-elementen (zoals metadata en structured data) eenvoudig kunnen worden uitgebreid.</p></li></ol><hr id="24b31667-0d38-8016-90a9-e0a9f3ee2a42"/><h3 id="24b31667-0d38-80ff-82eb-dc4bf40684ff" class=""><strong>Non-functionele requirements</strong></h3><h3 id="24b31667-0d38-80f0-bdd2-ed5fb53f3bc1" class=""><strong>Security </strong></h3><ul id="24b31667-0d38-80d8-a099-dab3052db40f" class="bulleted-list"><li style="list-style-type:disc">Omdat alle data alleen in de browser verwerkt wordt en <strong>niet wordt opgeslagen of doorgestuurd</strong>, is privacy heel goed gewaarborgd: gebruikersgegevens verlaten nooit hun apparaat.</li></ul><ul id="24b31667-0d38-80f0-9f02-eedc5928d976" class="bulleted-list"><li style="list-style-type:disc">De site wordt alleen via <strong>HTTPS</strong> aangeboden om te voorkomen dat iemand tijdens het laden meekijkt met de data (ook al is die data alleen lokaal).</li></ul><ul id="24b31667-0d38-80df-b6b7-c3ebff28d585" class="bulleted-list"><li style="list-style-type:disc">Er is geen inlog of registratie; iedereen gebruikt de tool anoniem.</li></ul><h3 id="24b31667-0d38-80ef-bd9c-cd2690e81f04" class=""><strong>SEO</strong></h3><ul id="24b31667-0d38-8074-b47e-d2baa96e4613" class="bulleted-list"><li style="list-style-type:disc">De site krijgt een goede <strong>meta-titel</strong> en <strong>meta-beschrijving</strong> gericht op relevante zoekwoorden zoals: “bruto netto calculator 2025”, “netto salaris berekenen Nederland”, “bruto naar netto salaris tool”. Dit helpt Google te begrijpen waar de site over gaat.</li></ul><ul id="24b31667-0d38-80c8-88bc-dc0e000bfcd5" class="bulleted-list"><li style="list-style-type:disc">De pagina bevat <strong>semantische HTML</strong> (zoals headers <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>) zodat zoekmachines de inhoud goed kunnen indexeren.</li></ul><ul id="24b31667-0d38-8039-a218-c4322ec59712" class="bulleted-list"><li style="list-style-type:disc">Er wordt gebruikgemaakt van <strong>structured data</strong> (JSON-LD) om de calculator als tool te markeren voor Google, wat de kans vergroot op speciale zoekresultaten (rich snippets).</li></ul><ul id="24b31667-0d38-8033-a18f-ed89de8c4bb6" class="bulleted-list"><li style="list-style-type:disc">De website is volledig <strong>mobielvriendelijk</strong> en snel, wat een positieve invloed heeft op de ranking (Google let sterk op mobiel gebruik en laadsnelheid).</li></ul><ul id="24b31667-0d38-8081-8ff4-f837fc3f254b" class="bulleted-list"><li style="list-style-type:disc">De code en content zijn zo opgebouwd dat het makkelijk wordt om later <strong>blogposts</strong> toe te voegen, zonder dat dat nu de MVP vertraagt.</li></ul><h3 id="24b31667-0d38-8004-80bc-dba9bf6ef46e" class=""><strong>Performance en usability</strong></h3><ul id="24b31667-0d38-80b4-ad4f-cf8347892a4a" class="bulleted-list"><li style="list-style-type:disc">Pagina moet in maximaal <strong>2 seconden laden</strong> op gemiddelde mobiele netwerken (4G).</li></ul><ul id="24b31667-0d38-8079-83bf-eb6bb4329447" class="bulleted-list"><li style="list-style-type:disc">Resultaten worden binnen <strong>1 seconde</strong> weergegeven na invoer of wijziging.</li></ul><ul id="24b31667-0d38-8039-a3d3-d554df786436" class="bulleted-list"><li style="list-style-type:disc">De app voldoet aan basale <strong>toegankelijkheidseisen</strong> (zoals contrast en toetsenbordnavigatie) voor zo breed mogelijk gebruik.</li></ul><h3 id="24b31667-0d38-80a7-935b-ebadc2ce2be1" class=""><strong>Onderhoudbaarheid en schaalbaarheid</strong></h3><ul id="24b31667-0d38-8097-9b2e-cc0e9abf83bc" class="bulleted-list"><li style="list-style-type:disc">Code is modulair en gedocumenteerd zodat later makkelijk aanpassingen of uitbreidingen gedaan kunnen worden (bijv. nieuwe parameters of rapportages).</li></ul><ul id="24b31667-0d38-80ad-885c-c25034821a8c" class="bulleted-list"><li style="list-style-type:disc">De belastingtarieven en regels zitten in een aparte configuratie zodat ze eenvoudig up-to-date gehouden kunnen worden voor toekomstige jaren (2026+).</li></ul><h2 id="24b31667-0d38-8043-926e-fa1962b6e730" class="">Tech-stack</h2><table id="24b31667-0d38-80b2-94bf-d3e7d23f3c73" class="simple-table"><thead class="simple-table-header"><tr id="24b31667-0d38-80c0-a061-f4fc76796e68"><th id="p&gt;cz" class="simple-table-header-color simple-table-header"><strong>Categorie</strong></th><th id="ZV\e" class="simple-table-header-color simple-table-header"><strong>Technologie</strong></th><th id="lvou" class="simple-table-header-color simple-table-header"><strong>Motivatie</strong></th></tr></thead><tbody><tr id="24b31667-0d38-8056-a657-c49f004f71d1"><td id="p&gt;cz" class=""><strong>Frontend framework</strong></td><td id="ZV\e" class=""><strong>React (via Vite)</strong></td><td id="lvou" class="">Moderne, snelle frontendontwikkeling met componentstructuur en herbruikbaarheid. </td></tr><tr id="24b31667-0d38-80de-86c2-cbdfe0e83bff"><td id="p&gt;cz" class=""><strong>Styling</strong></td><td id="ZV\e" class=""><strong>Tailwind CSS</strong></td><td id="lvou" class="">Snel stylen, responsief design, consistente huisstijl.</td></tr><tr id="24b31667-0d38-8067-ad88-fb02a0628df7"><td id="p&gt;cz" class=""><strong>Berekeningen</strong></td><td id="ZV\e" class=""><strong>JavaScript/TypeScript</strong> (client-side logica)</td><td id="lvou" class="">Logica voor bruto → netto berekening draait volledig in de browser, geen backend nodig.</td></tr><tr id="24b31667-0d38-8000-8189-fb7e402e8949"><td id="p&gt;cz" class=""><strong>Build &amp; hosting</strong></td><td id="ZV\e" class=""><strong>Vercel</strong></td><td id="lvou" class="">Eenvoudige hosting voor static sites, inclusief automatische CI/CD bij push naar GitHub.</td></tr><tr id="24b31667-0d38-8083-8c5b-f1be92d65751"><td id="p&gt;cz" class=""><strong>Testing</strong></td><td id="ZV\e" class=""><strong>Vitest</strong></td><td id="lvou" class="">Unit tests voor berekeningslogica.</td></tr><tr id="24b31667-0d38-8058-a8e6-f0c5daceeb7c"><td id="p&gt;cz" class=""><strong>Versiebeheer</strong></td><td id="ZV\e" class=""><strong>GitHub</strong></td><td id="lvou" class="">Samenwerken, versiebeheer, en automatische deploys.</td></tr></tbody></table><hr id="24b31667-0d38-8097-ad8c-fb23f162e51c"/><h3 id="24b31667-0d38-80e9-9dd2-efb6a3db5e18" class=""><strong>Architectuur – 100% Client-Side</strong></h3><p id="24b31667-0d38-80cc-84a2-f6a0b4ef420d" class=""><strong>Beschrijving:</strong></p><ul id="24b31667-0d38-804d-b49f-f7d0eda7b39b" class="bulleted-list"><li style="list-style-type:disc"><strong>Geen backend</strong>: Alle logica draait in de browser.</li></ul><ul id="24b31667-0d38-808b-97a8-f601d307fae5" class="bulleted-list"><li style="list-style-type:disc"><strong>Geen database</strong>: Alle berekeningen gebeuren direct op basis van user input.</li></ul><ul id="24b31667-0d38-8064-9e41-fa740b408e07" class="bulleted-list"><li style="list-style-type:disc"><strong>Static hosting</strong>: HTML, CSS en JS worden als statische bestanden geserveerd.</li></ul><ul id="24b31667-0d38-80e4-aa6a-ec2b10d9d351" class="bulleted-list"><li style="list-style-type:disc"><strong>Berekeningsmodule</strong>: Afzonderlijke module in JavaScript/TypeScript met Nederlandse belastingtabellen en logica.</li></ul><ul id="24b31667-0d38-8033-970d-f8840a14a728" class="bulleted-list"><li style="list-style-type:disc"><strong>UI-componenten</strong>: Herbruikbare React-componenten voor invoervelden, knoppen en resultaatweergave.</li></ul><h3 id="24b31667-0d38-8056-9c57-d53c0ae8477c" class="">Voordelen van deze aanpak</h3><ul id="24b31667-0d38-8029-bb17-cb171b71e8fb" class="bulleted-list"><li style="list-style-type:disc"><strong>Supersnel</strong>: Geen netwerkverkeer voor berekeningen → direct resultaat.</li></ul><ul id="24b31667-0d38-804f-9efa-f0590e0ddd96" class="bulleted-list"><li style="list-style-type:disc"><strong>Privacy</strong>: Gegevens worden niet naar een server gestuurd.</li></ul><ul id="24b31667-0d38-8091-80ac-c0f6a945d619" class="bulleted-list"><li style="list-style-type:disc"><strong>Kostenloos</strong>: Geen server- of databasekosten.</li></ul><ul id="24b31667-0d38-80cd-8822-f11ab86efaa9" class="bulleted-list"><li style="list-style-type:disc"><strong>Schaalbaar</strong>: Onbeperkt aantal gebruikers zonder extra kosten.</li></ul><ul id="24b31667-0d38-806d-ada5-ef2833c7015f" class="bulleted-list"><li style="list-style-type:disc"><strong>Eenvoudig te onderhouden</strong>: Geen backendcode of databasebeheer.</li></ul><h2 id="24b31667-0d38-801d-8259-de200178668e" class="">User Interface</h2><h3 id="24b31667-0d38-802f-9fe0-f790ac5098da" class="">Mock-up</h3><figure id="24b31667-0d38-8033-8a18-d4d1488b1b04" class="image"><a href="image.png"><img style="width:473px" src="image.png"/></a></figure><h2 id="24b31667-0d38-80f3-a873-c2496230d3db" class="">Logica 2025 brutto → netto</h2><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="24b31667-0d38-80ee-af1a-fc014249af69" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">ts
+Kopiëren
+// src/utils/calculator.ts
+export type CalcInput = {
+  brutoMaandsalaris: number;   // &gt;0
+  leeftijd: number;            // niet gebruikt in MVP; later voor AOW-variant
+  urenPerWeek: number;         // 1..60; fulltime = 40
+  vakantiegeldAan: boolean;    // 8% over jaarBasis
+  pensioenBijdragePct: number; // 0..100 (werknemer); over jaarBasis + 13e
+  dertiendeMaandAan: boolean;  // 1x bruto maand (geschaald)
+};
+
+export type CalcOutput = {
+  nettoPerMaand: number;
+  tussenstappen: {
+    schaalFactor: number;
+    brutoMaandGeschaald: number;
+    jaarBasis: number;
+    vakantiegeld: number;
+    dertiendeMaand: number;
+    jaarTotaalBruto: number;
+    pensioenAftrek: number;
+    belastbaarJaar: number;
+    belastingJaar: number;       // vóór heffingskortingen
+    heffingskortingen: number;   // algemene + arbeids
+    belastingNaKorting: number;
+    nettoJaar: number;
+  };
+};
+
+// ---- 2025 parameters (niet-AOW) ----
+// Box-1 tarieven 2025: 35,82% / 37,48% / 49,50% met grenzen 38.441 en 76.817. (Rijksoverheid) :contentReference[oaicite:4]{index=4}
+const BOX1_BANDS_2025 = [
+  { upto: 38441, rate: 0.3582 },
+  { upto: 76817, rate: 0.3748 },
+  { upto: Infinity, rate: 0.495 },
+];
+
+// Algemene heffingskorting 2025 (max 3.068; afbouw vanaf 28.406 met 6,337%; bij 76.817 ≈ 0). :contentReference[oaicite:5]{index=5}
+export function algemeneHeffingskorting2025(ink: number): number {
+  const max = 3068;
+  const drempel = 28406;
+  const afbouwPct = 0.06337;
+  if (ink &lt;= drempel) return max;
+  if (ink &gt;= 76817) return 0;
+  const k = max - (ink - drempel) * afbouwPct;
+  return Math.max(0, Math.min(max, k));
+}
+
+// Arbeidskorting 2025 (niet-AOW) – piecewise officiële tabel. :contentReference[oaicite:6]{index=6}
+export function arbeidskorting2025(arbInk: number): number {
+  const a = 12169;
+  const b = 26288;
+  const c = 43071;
+  const d = 129078;
+
+  if (arbInk &lt;= 0) return 0;
+
+  if (arbInk &lt;= a) return 0.08053 * arbInk;
+
+  if (arbInk &lt;= b) return 980 + 0.3003 * (arbInk - a);
+
+  if (arbInk &lt;= c) return 5220 + 0.02258 * (arbInk - b);
+
+  if (arbInk &lt; d) {
+    const k = 5599 - 0.06510 * (arbInk - c);
+    return Math.max(0, k);
+  }
+  return 0;
+}
+
+// ---------------- helpers ----------------
+function berekenBelasting(jaarInk: number): number {
+  let resterend = jaarInk;
+  let begin = 0;
+  let totaal = 0;
+  for (const band of BOX1_BANDS_2025) {
+    const grens = band.upto;
+    const deel = Math.max(0, Math.min(resterend, grens - begin));
+    totaal += deel * band.rate;
+    resterend -= deel;
+    begin = grens;
+    if (resterend &lt;= 0) break;
+  }
+  return totaal;
+}
+
+function clamp(n: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, n));
+}
+
+function assertInputs(i: CalcInput) {
+  if (!(i.brutoMaandsalaris &gt; 0)) throw new Error(&quot;Voer een geldig bruto maandsalaris (&gt; 0) in.&quot;);
+  if (!(i.urenPerWeek &gt; 0 &amp;&amp; i.urenPerWeek &lt;= 60)) throw new Error(&quot;Uren per week moet tussen 1 en 60 liggen.&quot;);
+  i.pensioenBijdragePct = clamp(i.pensioenBijdragePct, 0, 100);
+}
+
+// ---------------- kern ----------------
+export function calculateNetMonthly(i: CalcInput): CalcOutput {
+  assertInputs(i);
+  const FULLTIME = 40;
+  const VAK_PCT = 0.08; // 8%
+
+  const schaalFactor = i.urenPerWeek / FULLTIME;
+  const brutoMaandGeschaald = i.brutoMaandsalaris * schaalFactor;
+
+  const jaarBasis = brutoMaandGeschaald * 12;
+  const vakantiegeld = i.vakantiegeldAan ? jaarBasis * VAK_PCT : 0;
+  const dertiendeMaand = i.dertiendeMaandAan ? brutoMaandGeschaald : 0;
+
+  const jaarTotaalBruto = jaarBasis + vakantiegeld + dertiendeMaand;
+
+  // MVP‑aanname: pensioen over jaarBasis + 13e (niet over vakantiegeld)
+  const pensioenAftrek = (jaarBasis + dertiendeMaand) * (i.pensioenBijdragePct / 100);
+
+  const belastbaarJaar = Math.max(0, jaarTotaalBruto - pensioenAftrek);
+
+  // Box‑1 belasting vóór kortingen
+  const belastingJaar = berekenBelasting(belastbaarJaar);
+
+  // Heffingskortingen — MVP: op basis van belastbaarJaar als benadering van arbeids-/verzamelinkomen
+  const alg = algemeneHeffingskorting2025(belastbaarJaar);
+  const arb = arbeidskorting2025(belastbaarJaar);
+  const heffingskortingen = Math.max(0, alg + arb);
+
+  const belastingNaKorting = Math.max(0, belastingJaar - heffingskortingen);
+  const nettoJaar = belastbaarJaar - belastingNaKorting;
+  const nettoPerMaand = nettoJaar / 12;
+
+  return {
+    nettoPerMaand,
+    tussenstappen: {
+      schaalFactor,
+      brutoMaandGeschaald,
+      jaarBasis,
+      vakantiegeld,
+      dertiendeMaand,
+      jaarTotaalBruto,
+      pensioenAftrek,
+      belastbaarJaar,
+      belastingJaar,
+      heffingskortingen,
+      belastingNaKorting,
+      nettoJaar,
+    },
+  };
+}
+
+</code></pre><hr id="24b31667-0d38-80f5-a96b-dec30e09a4b7"/><h2 id="24b31667-0d38-8016-8fe6-f29a3afd6b2d" class="">Bestandstructuur</h2><p id="24b31667-0d38-80bd-a225-c4dfbe494a20" class="">bruto-netto/<br/>├─ public/<br/>│  └─ favicon.ico                # Favicon en eventuele statische assets<br/>├─ src/<br/>│  ├─ components/                # React-componenten<br/>│  │  ├─ SalaryForm.tsx          # Form voor invoer bruto, uren, pensioen, etc.<br/>│  │  ├─ NetResult.tsx           # Toont netto bedrag + breakdown<br/>│  │  └─ Layout.tsx              # Header/Footer wrapper<br/>│  ├─ utils/                     # Logica &amp; helpers<br/>│  │  ├─ calculator.ts           # Berekeningslogica 2025<br/>│  │  └─ validators.ts           # Inputvalidatie<br/>│  ├─ data/<br/>│  │  └─ tax-2025.json           # Belastingtarieven &amp; kortingen<br/>│  ├─ styles/<br/>│  │  └─ index.css               # Tailwind entry point<br/>│  ├─ App.tsx                    # Hoofdcomponent<br/>│  ├─ main.tsx                   # React entry point<br/>│  └─ vite-env.d.ts<br/>├─ index.html                    # HTML-template<br/>├─ package.json<br/>├─ tsconfig.json<br/>├─ tailwind.config.cjs<br/>└─ postcss.config.cjs</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
