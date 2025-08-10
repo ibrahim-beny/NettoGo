@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { Layout } from './components/Layout';
 import { SalaryForm } from './components/SalaryForm';
 import { NetResult } from './components/NetResult';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { CalcOutput } from '../utils/calculator';
-import { formatCurrency, formatPercentage, formatNumber } from '../utils/validators';
+import { formatCurrency, formatPercentage } from '../utils/validators';
 
 interface NetResultProps {
   result: CalcOutput | null;
