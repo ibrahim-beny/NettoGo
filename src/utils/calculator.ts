@@ -1,5 +1,5 @@
 export type CalcInput = {
-  brutoMaandsalaris: number | undefined;   // >0
+  brutoMaandsalaris: number;   // >0
   leeftijd: number | undefined;            // niet gebruikt in MVP; later voor AOW-variant
   urenPerWeek: number;         // 1..60; fulltime = 40
   vakantiegeldAan: boolean;    // 8% over jaarBasis
@@ -87,7 +87,7 @@ function clamp(n: number, min: number, max: number) {
 }
 
 function assertInputs(i: CalcInput) {
-  if (!i.brutoMaandsalaris || !(i.brutoMaandsalaris > 0)) throw new Error("Voer een geldig bruto maandsalaris (> 0) in.");
+  if (!(i.brutoMaandsalaris > 0)) throw new Error("Voer een geldig bruto maandsalaris (> 0) in.");
   if (!(i.urenPerWeek > 0 && i.urenPerWeek <= 60)) throw new Error("Uren per week moet tussen 1 en 60 liggen.");
   i.pensioenBijdragePct = clamp(i.pensioenBijdragePct, 0, 100);
 }

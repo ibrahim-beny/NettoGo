@@ -9,7 +9,7 @@ interface SalaryFormProps {
 
 export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate, isLoading = false }) => {
   const [formData, setFormData] = useState<CalcInput>({
-    brutoMaandsalaris: undefined,
+    brutoMaandsalaris: 0,
     leeftijd: undefined,
     urenPerWeek: 0,
     vakantiegeldAan: true,
@@ -34,7 +34,7 @@ export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate, isLoading =
     e.preventDefault();
     
     // Check if required fields are filled
-    if (!formData.brutoMaandsalaris || !formData.leeftijd) {
+    if (!(formData.brutoMaandsalaris > 0) || !formData.leeftijd) {
       setErrors([
         { field: 'brutoMaandsalaris', message: 'Bruto maandsalaris is verplicht' },
         { field: 'leeftijd', message: 'Leeftijd is verplicht' }
@@ -91,8 +91,8 @@ export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate, isLoading =
             <input
               type="number"
               id="brutoMaandsalaris"
-              value={formData.brutoMaandsalaris || ''}
-              onChange={(e) => handleInputChange('brutoMaandsalaris', e.target.value === '' ? undefined : parseFloat(e.target.value))}
+              value={formData.brutoMaandsalaris === 0 ? '' : formData.brutoMaandsalaris}
+              onChange={(e) => handleInputChange('brutoMaandsalaris', e.target.value === '' ? 0 : parseFloat(e.target.value))}
               className={`pl-10 pr-4 py-4 border-2 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 w-full text-lg font-medium ${
                 getFieldError('brutoMaandsalaris') && isFieldTouched('brutoMaandsalaris') 
                   ? 'border-red-300 focus:ring-red-500/20 focus:border-red-500 bg-red-50' 
