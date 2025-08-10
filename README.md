@@ -28,8 +28,8 @@ Een moderne, privacy-vriendelijke webapplicatie om je bruto salaris om te rekene
 
 1. **Clone het project**
    ```bash
-   git clone <repository-url>
-   cd netto-salary-calculator
+   git clone https://github.com/ibrahim-beny/NettoGo.git
+   cd NettoGo
    ```
 
 2. **Installeer dependencies**
@@ -63,6 +63,16 @@ npm run build
 ```bash
 npm run preview
 ```
+
+### Deploy naar GitHub Pages
+```bash
+npm run build
+git add .
+git commit -m "Update build"
+git push origin master
+```
+
+De app wordt automatisch gedeployed naar GitHub Pages via GitHub Actions.
 
 ### Deploy naar Vercel
 ```bash
@@ -145,6 +155,27 @@ De applicatie is geoptimaliseerd voor:
 - **Geen data opslag**: Geen cookies, localStorage of database
 - **HTTPS only**: Aanbevolen voor productie
 - **Geen tracking**: Geen analytics of externe scripts
+
+## 🌐 GitHub Deployment
+
+### Automatische Deployment
+Dit project gebruikt GitHub Actions voor automatische deployment naar GitHub Pages:
+
+1. **Push naar master branch** triggert automatische build
+2. **GitHub Actions** bouwt de app en deployed naar GitHub Pages
+3. **Live URL**: https://ibrahim-beny.github.io/NettoGo/
+
+### GitHub Pages instellen
+1. Ga naar je repository settings
+2. Scroll naar "Pages" sectie
+3. Selecteer "GitHub Actions" als source
+4. De workflow wordt automatisch uitgevoerd bij elke push
+
+### Lokale Deployment Script
+Gebruik het PowerShell script voor lokale testing:
+```powershell
+.\deploy.ps1
+```
 
 ## 🚀 Performance
 
