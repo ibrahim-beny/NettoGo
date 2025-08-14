@@ -27,11 +27,6 @@ function App() {
     }
   }, []);
 
-  const handleReset = useCallback(() => {
-    setResult(null);
-    setError(null);
-  }, []);
-
   return (
     <Layout>
       <div className="max-w-6xl mx-auto">
@@ -104,18 +99,6 @@ function App() {
           {/* Results */}
           <div className="xl:col-span-1">
             <NetResult result={result} isLoading={isLoading} />
-            
-            {result && (
-              <div className="mt-8 pt-8 border-t border-slate-200/50">
-                <button
-                  onClick={handleReset}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-slate-100 to-slate-200 hover:from-slate-200 hover:to-slate-300 text-slate-700 font-medium rounded-xl border border-slate-300/50 transition-all duration-200 hover:shadow-md active:scale-95 flex items-center justify-center"
-                >
-                  <span className="mr-2">🔄</span>
-                  Opnieuw beginnen
-                </button>
-              </div>
-            )}
           </div>
         </div>
 
