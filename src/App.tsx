@@ -33,8 +33,12 @@ function App() {
         {/* Hero Section */}
         <div className="text-center mb-16">
           <div className="mb-8">
-            <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 rounded-3xl mb-6 shadow-2xl shadow-blue-500/25">
-              <span className="text-4xl">🚀</span>
+            <div className="inline-flex items-center justify-center">
+              <img 
+                src="/NettoGo_zondertext.png" 
+                alt="NettoGo Logo" 
+                className="w-56 h-56 object-contain drop-shadow-2xl"
+              />
             </div>
           </div>
           <h1 className="text-6xl font-bold bg-gradient-to-r from-slate-800 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-6">
