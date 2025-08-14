@@ -1,0 +1,214 @@
+// nettoCalc.ts — NL 2025
+// Output bevat GEEN jaarBrutoZonderExtras of jaarNettoZonderExtras.
+// Wel: nettoPerMaandExclExtras + losse jaarbedragen voor VG/13e (bruto & netto-indicatie)
+// en totalen JAAR incl. extra’s (bruto & netto).
+
+type MoneyCents = number;
+
+type Options = {
+  taxYear?: number;                        // default 2025
+  applyTaxCreditsAtThisEmployer?: boolean; // default true
+  assumeNonAOW?: boolean;                  // default true
+  treatZvwAsEmployerLevy?: boolean;        // default true (niet inhouden)
+  employeePensionPct?: number;             // % van BASIS-jaarloon (pre-tax), default 0
+  vacationAllowancePct?: number;           // default 8 (%)
+};
+
+type Result = {
+  nettoPerMaandExclExtras: MoneyCents;          // ← tonen
+  vakantiegeldJaar?: { bruto: MoneyCents; nettoIndicatie: MoneyCents };   // ← tonen
+  dertiendeMaandJaar?: { bruto: MoneyCents; nettoIndicatie: MoneyCents }; // ← tonen
+  jaarBrutoInclExtras: MoneyCents;              // ← tonen
+  jaarNettoInclExtras: MoneyCents;              // ← tonen
+  details: { jaar: number; aannames: string[] }; // ← tonen (metadata)
+};
+
+type TaxBracket = { upto: number; rate: number }; // euro/jaar, rate in %
+type TaxConfig = {
+  bracketsNonAOW: TaxBracket[];
+  bracketsAOW: TaxBracket[];
+  generalCreditNonAOW: (verzamelinkomen: number) => number; // euro/jaar
+  generalCreditAOW: (verzamelinkomen: number) => number;    // euro/jaar
+  labourCreditNonAOW: (arbeidsinkomen: number) => number;   // euro/jaar
+  labourCreditAOW: (arbeidsinkomen: number) => number;      // euro/jaar
+  zvw: { employeeRate: number; maxBase: number; withholdFromEmployee: boolean };
+};
+
+const cfg2025: TaxConfig = {
+  bracketsNonAOW: [
+    { upto: 38441, rate: 35.82 },
+    { upto: 76817, rate: 37.48 },
+    { upto: Infinity, rate: 49.50 }
+  ],
+  bracketsAOW: [
+    { upto: 38441, rate: 17.92 },
+    { upto: 76817, rate: 37.48 },
+    { upto: Infinity, rate: 49.50 }
+  ],
+  generalCreditNonAOW: (v: number) => {
+    if (v <= 28406) return 3068;
+    if (v >= 76817) return 0;
+    const afbouw = 0.06337 * (v - 28406);
+    return Math.max(0, Math.round((3068 - afbouw) * 100) / 100);
+  },
+  generalCreditAOW: (v: number) => {
+    if (v <= 28406) return 1536;
+    if (v >= 76817) return 0;
+    const afbouw = 0.03170 * (v - 28406);
+    return Math.max(0, Math.round((1536 - afbouw) * 100) / 100);
+  },
+  labourCreditNonAOW: (ai: number) => {
+    if (ai <= 0) return 0;
+    if (ai < 12169) return 0.08053 * ai;
+    if (ai < 26288) return 980 + 0.30030 * (ai - 12169);
+    if (ai < 43071) return 5220 + 0.02258 * (ai - 26288);
+    if (ai < 129078) return Math.max(0, 5599 - 0.06510 * (ai - 43071));
+    return 0;
+  },
+  labourCreditAOW: (ai: number) => {
+    if (ai <= 0) return 0;
+    if (ai < 12169) return 0.04029 * ai;
+    if (ai < 26288) return 491 + 0.15023 * (ai - 12169);
+    if (ai < 43071) return 2612 + 0.01130 * (ai - 26288);
+    if (ai < 129078) return Math.max(0, 2802 - 0.03257 * (ai - 43071));
+    return 0;
+  },
+  zvw: { employeeRate: 5.26, maxBase: 75864, withholdFromEmployee: false }
+};
+
+const taxConfigByYear: Record<number, TaxConfig> = { 2025: cfg2025 };
+
+const toCents = (euro: number) => Math.round(euro * 100);
+const fromCents = (c: number) => c / 100;
+
+function taxByBrackets(yearly: number, brackets: TaxBracket[]) {
+  let remaining = yearly, last = 0, tax = 0;
+  for (const b of brackets) {
+    const span = Math.min(remaining, b.upto - last);
+    if (span > 0) {
+      tax += span * (b.rate / 100);
+      remaining -= span;
+      last = b.upto;
+    }
+    if (remaining <= 0) break;
+  }
+  return Math.round(tax * 100); // → centen
+}
+
+function yearTaxAfterCreditsC(
+  taxableYearC: MoneyCents,
+  assumeNonAOW: boolean,
+  applyCredits: boolean,
+  cfg: TaxConfig
+) {
+  const taxableYear = fromCents(taxableYearC);
+  const brackets = assumeNonAOW ? cfg.bracketsNonAOW : cfg.bracketsAOW;
+  const grossTaxC = taxByBrackets(taxableYear, brackets);
+
+  const gen = applyCredits
+    ? (assumeNonAOW ? cfg.generalCreditNonAOW(taxableYear)
+                    : cfg.generalCreditAOW(taxableYear))
+    : 0;
+  const lab = applyCredits
+    ? (assumeNonAOW ? cfg.labourCreditNonAOW(taxableYear)
+                    : cfg.labourCreditAOW(taxableYear))
+    : 0;
+
+  const creditsC = Math.min(grossTaxC, toCents(gen + lab));
+  return Math.max(0, grossTaxC - creditsC);
+}
+
+export function berekenNetto(
+  brutoMaandEuro: number,
+  hasVakantiegeld: boolean,
+  hasThirteenthMonth: boolean,
+  opts: Options = {}
+): Result {
+  const year = opts.taxYear ?? 2025;
+  const cfg = taxConfigByYear[year];
+  if (!cfg) throw new Error(`Onbekend belastingjaar: ${year}`);
+
+  const assumeNonAOW = opts.assumeNonAOW ?? true;
+  const applyCredits = opts.applyTaxCreditsAtThisEmployer ?? true;
+  const treatZvwAsEmployerLevy = opts.treatZvwAsEmployerLevy ?? true; // standaard: niet inhouden
+  const employeePensionPct = Math.max(0, Math.min(100, opts.employeePensionPct ?? 0));
+  const vgPct = opts.vacationAllowancePct ?? 8;
+
+  const brutoMaandC = toCents(brutoMaandEuro);
+  const jaarBrutoBasisC = brutoMaandC * 12;
+
+  // Pensioen werknemer over BASIS-jaarloon (pre-tax)
+  const pensioenC = Math.round(jaarBrutoBasisC * (employeePensionPct / 100));
+
+  // Belastbare basis (zonder extra’s)
+  const belastbaarBasisC = Math.max(0, jaarBrutoBasisC - pensioenC);
+
+  // Jaarbelasting (na kortingen) op basis
+  const yearTaxAfterCred_BasisC = yearTaxAfterCreditsC(
+    belastbaarBasisC, assumeNonAOW, applyCredits, cfg
+  );
+
+  // Zvw: standaard niet inhouden (werkgeverslast)
+  const zvwBasisC = (treatZvwAsEmployerLevy || !cfg.zvw.withholdFromEmployee) ? 0 : (() => {
+    const base = Math.min(fromCents(belastbaarBasisC), cfg.zvw.maxBase);
+    return Math.round(base * (cfg.zvw.employeeRate / 100) * 100);
+  })();
+
+  // Intern: jaarnetto zonder extra’s (niet teruggeven)
+  const jaarNettoBasisC = jaarBrutoBasisC - pensioenC - yearTaxAfterCred_BasisC - zvwBasisC;
+
+  // --- Extra’s via delta-methode ---
+  let vakantiegeldJaar: Result["vakantiegeldJaar"] | undefined;
+  let dertiendeMaandJaar: Result["dertiendeMaandJaar"] | undefined;
+
+  if (hasVakantiegeld) {
+    const vgBrutoC = Math.round(jaarBrutoBasisC * (vgPct / 100));
+    const belastbaarMetVGC = Math.max(0, (jaarBrutoBasisC + vgBrutoC) - pensioenC);
+    const yearTaxAfterCred_WithVGC = yearTaxAfterCreditsC(
+      belastbaarMetVGC, assumeNonAOW, applyCredits, cfg
+    );
+    const extraBelastingVG_C = Math.max(0, yearTaxAfterCred_WithVGC - yearTaxAfterCred_BasisC);
+    const vgNettoC = vgBrutoC - extraBelastingVG_C; // Zvw niet ingehouden
+    vakantiegeldJaar = { bruto: vgBrutoC, nettoIndicatie: Math.max(0, vgNettoC) };
+  }
+
+  if (hasThirteenthMonth) {
+    const dertiendeBrutoC = brutoMaandC;
+    const belastbaarMet13C = Math.max(0, (jaarBrutoBasisC + dertiendeBrutoC) - pensioenC);
+    const yearTaxAfterCred_With13C = yearTaxAfterCreditsC(
+      belastbaarMet13C, assumeNonAOW, applyCredits, cfg
+    );
+    const extraBelasting13_C = Math.max(0, yearTaxAfterCred_With13C - yearTaxAfterCred_BasisC);
+    const dertiendeNettoC = dertiendeBrutoC - extraBelasting13_C;
+    dertiendeMaandJaar = { bruto: dertiendeBrutoC, nettoIndicatie: Math.max(0, dertiendeNettoC) };
+  }
+
+  // Totalen JAAR incl. extra’s (voor informatieve weergave)
+  const jaarBrutoInclExtras =
+    jaarBrutoBasisC + (vakantiegeldJaar?.bruto ?? 0) + (dertiendeMaandJaar?.bruto ?? 0);
+
+  const jaarNettoInclExtras =
+    jaarNettoBasisC + (vakantiegeldJaar?.nettoIndicatie ?? 0) + (dertiendeMaandJaar?.nettoIndicatie ?? 0);
+
+  // Uiteindelijke UI-waarden
+  const nettoPerMaandExclExtras = Math.max(0, Math.round(jaarNettoBasisC / 12));
+
+  return {
+    nettoPerMaandExclExtras,
+    vakantiegeldJaar,
+    dertiendeMaandJaar,
+    jaarBrutoInclExtras,
+    jaarNettoInclExtras,
+    details: {
+      jaar: year,
+      aannames: [
+        assumeNonAOW ? 'Tariefset: niet-AOW' : 'Tariefset: AOW',
+        applyCredits ? 'Heffingskortingen toegepast' : 'Heffingskortingen NIET toegepast',
+        'Zvw niet ingehouden (werkgeverslast)',
+        `Werknemer-pensioen over basis: ${employeePensionPct}%`,
+        hasVakantiegeld ? `Vakantiegeld: ${vgPct}% (jaar)` : 'Geen vakantiegeld',
+        hasThirteenthMonth ? '13e maand: ja (1× maand)' : '13e maand: nee'
+      ]
+    }
+  };
+}

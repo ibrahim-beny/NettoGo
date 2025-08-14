@@ -15,7 +15,7 @@ function App() {
     
     try {
       // Simuleer een kleine vertraging voor betere UX
-      await new Promise(resolve => setTimeout(resolve, 300));
+      await new Promise(resolve => setTimeout(resolve, 100));
       
       const calculatedResult = calculateNetMonthly(input);
       setResult(calculatedResult);
@@ -55,7 +55,7 @@ function App() {
               <span className="text-sm font-medium text-slate-700">100% Privacy-vriendelijk</span>
             </div>
             <div className="flex items-center px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-blue-200/50 shadow-sm">
-              <span className="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
+              <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 animate-pulse"></span>
               <span className="text-sm font-medium text-slate-700">Real-time berekeningen</span>
             </div>
             <div className="flex items-center px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-purple-200/50 shadow-sm">
@@ -98,7 +98,12 @@ function App() {
                 Vul je gegevens in
               </h2>
             </div>
-            <SalaryForm onCalculate={handleCalculate} isLoading={isLoading} />
+            <SalaryForm onCalculate={handleCalculate} />
+          </div>
+
+          {/* Results */}
+          <div className="xl:col-span-1">
+            <NetResult result={result} isLoading={isLoading} />
             
             {result && (
               <div className="mt-8 pt-8 border-t border-slate-200/50">
@@ -112,61 +117,6 @@ function App() {
               </div>
             )}
           </div>
-
-          {/* Results */}
-          <div className="xl:col-span-1">
-            <NetResult result={result} isLoading={isLoading} />
-          </div>
-        </div>
-
-        {/* Features Section */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-800 mb-4">
-              Waarom NettoGo?
-            </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Ontdek de voordelen van onze professionele salaris calculator
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="group bg-white/70 backdrop-blur-xl rounded-2xl border border-white/50 p-8 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-300">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <span className="text-white text-2xl">💰</span>
-                </div>
-                <h3 className="text-xl font-bold text-slate-800 mb-3">Box 1 Tarieven</h3>
-                <p className="text-slate-600 leading-relaxed">
-                  Van 35,82% tot 49,50% afhankelijk van je inkomen, altijd up-to-date met de laatste regels.
-                </p>
-              </div>
-            </div>
-            
-            <div className="group bg-white/70 backdrop-blur-xl rounded-2xl border border-white/50 p-8 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-300">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <span className="text-white text-2xl">🎯</span>
-                </div>
-                <h3 className="text-xl font-bold text-slate-800 mb-3">Heffingskortingen</h3>
-                <p className="text-slate-600 leading-relaxed">
-                  Algemene + arbeidskorting automatisch toegepast voor maximale belastingvoordelen.
-                </p>
-              </div>
-            </div>
-            
-            <div className="group bg-white/70 backdrop-blur-xl rounded-2xl border border-white/50 p-8 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-300">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <span className="text-white text-2xl">⚡</span>
-                </div>
-                <h3 className="text-xl font-bold text-slate-800 mb-3">Real-time</h3>
-                <p className="text-slate-600 leading-relaxed">
-                  Direct resultaat bij het invoeren van gegevens, geen wachttijden of vertragingen.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* CTA Section */}
@@ -175,11 +125,11 @@ function App() {
             Klaar om je netto salaris te berekenen?
           </h2>
           <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-            Start bovenaan de pagina en vul je gegevens in. Binnen seconden heb je een nauwkeurige berekening van je netto inkomen.
+            Start bovenaan de pagina en vul je gegevens in. Binnen seconden zie je real-time updates van je netto inkomen terwijl je typt.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <div className="px-6 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-blue-200/50 shadow-sm">
-              <span className="text-sm font-medium text-slate-700">🚀 Snel & Eenvoudig</span>
+              <span className="text-sm font-medium text-slate-700">⚡ Real-time Updates</span>
             </div>
             <div className="px-6 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-purple-200/50 shadow-sm">
               <span className="text-sm font-medium text-slate-700">🔒 100% Veilig</span>

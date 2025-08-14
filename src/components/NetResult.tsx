@@ -1,6 +1,6 @@
 import React from 'react';
 import { CalcOutput } from '../utils/calculator';
-import { formatCurrency, formatPercentage } from '../utils/validators';
+import { formatCurrency } from '../utils/validators';
 
 interface NetResultProps {
   result: CalcOutput | null;
@@ -18,7 +18,6 @@ export const NetResult: React.FC<NetResultProps> = ({ result, isLoading = false 
             <div className="h-4 bg-slate-200 rounded"></div>
             <div className="h-4 bg-slate-200 rounded w-5/6"></div>
             <div className="h-4 bg-slate-200 rounded w-4/6"></div>
-            <div className="h-4 bg-slate-200 rounded w-3/4"></div>
           </div>
         </div>
       </div>
@@ -65,8 +64,8 @@ export const NetResult: React.FC<NetResultProps> = ({ result, isLoading = false 
         </p>
       </div>
 
-      {/* Tussenstappen */}
-      <div className="space-y-8">
+      {/* Vereenvoudigde resultaten */}
+      <div className="space-y-6">
         <div className="flex items-center gap-3 mb-6">
           <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
             <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -74,115 +73,27 @@ export const NetResult: React.FC<NetResultProps> = ({ result, isLoading = false 
             </svg>
           </div>
           <h3 className="text-xl font-bold text-slate-800">
-            Berekening in Detail
+            Overzicht
           </h3>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Linker kolom - Inkomsten */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              Inkomsten
-            </h4>
-            
-            <div className="space-y-3">
-              <div className="flex justify-between items-center p-3 bg-slate-50/50 rounded-xl border border-slate-200/50">
-                <span className="text-sm text-slate-600">Bruto maand (geschaald):</span>
-                <span className="font-semibold text-slate-800">{formatCurrency(tussenstappen.brutoMaandGeschaald)}</span>
-              </div>
-              
-              <div className="flex justify-between items-center p-3 bg-slate-50/50 rounded-xl border border-slate-200/50">
-                <span className="text-sm text-slate-600">Jaarbasis (12 maanden):</span>
-                <span className="font-semibold text-slate-800">{formatCurrency(tussenstappen.jaarBasis)}</span>
-              </div>
-              
-              {tussenstappen.vakantiegeld > 0 && (
-                <div className="flex justify-between items-center p-3 bg-green-50/50 rounded-xl border border-green-200/50">
-                  <span className="text-sm text-slate-600">Vakantiegeld (8%):</span>
-                  <span className="font-semibold text-green-600">+{formatCurrency(tussenstappen.vakantiegeld)}</span>
-                </div>
-              )}
-              
-              {tussenstappen.dertiendeMaand > 0 && (
-                <div className="flex justify-between items-center p-3 bg-green-50/50 rounded-xl border border-green-200/50">
-                  <span className="text-sm text-slate-600">Dertiende maand:</span>
-                  <span className="font-semibold text-green-600">+{formatCurrency(tussenstappen.dertiendeMaand)}</span>
-                </div>
-              )}
-              
-              <div className="flex justify-between items-center p-4 bg-gradient-to-r from-slate-100 to-slate-200 rounded-xl border border-slate-300/50 font-bold text-slate-800">
-                <span>Totaal bruto per jaar:</span>
-                <span>{formatCurrency(tussenstappen.jaarTotaalBruto)}</span>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 gap-6">
+          {/* Netto maandsalaris */}
+          <div className="flex justify-between items-center p-4 bg-gradient-to-r from-green-100 to-emerald-200 rounded-xl border border-green-300/50">
+            <span className="text-lg font-semibold text-slate-800">Netto maandsalaris:</span>
+            <span className="text-2xl font-bold text-green-600">{formatCurrency(nettoPerMaand)}</span>
           </div>
-
-          {/* Rechter kolom - Aftrekken */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
-              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              Aftrekken
-            </h4>
-            
-            <div className="space-y-3">
-              {tussenstappen.pensioenAftrek > 0 && (
-                <div className="flex justify-between items-center p-3 bg-orange-50/50 rounded-xl border border-orange-200/50">
-                  <span className="text-sm text-slate-600">Pensioen aftrek:</span>
-                  <span className="font-semibold text-orange-600">-{formatCurrency(tussenstappen.pensioenAftrek)}</span>
-                </div>
-              )}
-              
-              <div className="flex justify-between items-center p-3 bg-slate-50/50 rounded-xl border border-slate-200/50">
-                <span className="text-sm text-slate-600">Belastbaar inkomen:</span>
-                <span className="font-semibold text-slate-800">{formatCurrency(tussenstappen.belastbaarJaar)}</span>
-              </div>
-              
-              <div className="flex justify-between items-center p-3 bg-red-50/50 rounded-xl border border-red-200/50">
-                <span className="text-sm text-slate-600">Belasting (vóór korting):</span>
-                <span className="font-semibold text-red-600">-{formatCurrency(tussenstappen.belastingJaar)}</span>
-              </div>
-              
-              <div className="flex justify-between items-center p-3 bg-green-50/50 rounded-xl border border-green-200/50">
-                <span className="text-sm text-slate-600">Heffingskortingen:</span>
-                <span className="font-semibold text-green-600">+{formatCurrency(tussenstappen.heffingskortingen)}</span>
-              </div>
-              
-              <div className="flex justify-between items-center p-4 bg-gradient-to-r from-green-100 to-emerald-200 rounded-xl border border-green-300/50 font-bold text-slate-800">
-                <span>Netto per jaar:</span>
-                <span>{formatCurrency(tussenstappen.nettoJaar)}</span>
-              </div>
-            </div>
+          
+          {/* Bruto jaarsalaris */}
+          <div className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-100 to-blue-200 rounded-xl border border-blue-300/50">
+            <span className="text-lg font-semibold text-slate-800">Bruto jaarsalaris (incl. extra's):</span>
+            <span className="text-2xl font-bold text-blue-600">{formatCurrency(tussenstappen.jaarTotaalBruto)}</span>
           </div>
-        </div>
-
-        {/* Extra informatie */}
-        <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl border border-blue-200/50">
-          <h4 className="text-lg font-semibold text-slate-800 mb-4 text-center flex items-center justify-center gap-2">
-            <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            Belangrijke Metrics
-          </h4>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50">
-              <div className="text-2xl font-bold text-blue-600 mb-1">
-                {formatPercentage(tussenstappen.schaalFactor * 100)}
-              </div>
-              <div className="text-sm text-slate-600 font-medium">Schaalfactor</div>
-            </div>
-            <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50">
-              <div className="text-2xl font-bold text-red-600 mb-1">
-                {formatPercentage((tussenstappen.belastingNaKorting / tussenstappen.belastbaarJaar) * 100)}
-              </div>
-              <div className="text-sm text-slate-600 font-medium">Effectieve belasting</div>
-            </div>
-            <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50">
-              <div className="text-2xl font-bold text-green-600 mb-1">
-                {formatPercentage((tussenstappen.nettoJaar / tussenstappen.jaarTotaalBruto) * 100)}
-              </div>
-              <div className="text-sm text-slate-600 font-medium">Netto percentage</div>
-            </div>
+          
+          {/* Netto jaarinkomen */}
+          <div className="flex justify-between items-center p-4 bg-gradient-to-r from-purple-100 to-purple-200 rounded-xl border border-purple-300/50">
+            <span className="text-lg font-semibold text-slate-800">Netto jaarinkomen (incl. extra's):</span>
+            <span className="text-2xl font-bold text-purple-600">{formatCurrency(tussenstappen.nettoJaar)}</span>
           </div>
         </div>
       </div>

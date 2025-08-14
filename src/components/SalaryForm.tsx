@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CalcInput } from '../utils/calculator';
 import { validateSalaryInput, ValidationError } from '../utils/validators';
 
 interface SalaryFormProps {
   onCalculate: (input: CalcInput) => void;
-  isLoading?: boolean;
 }
 
-export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate, isLoading = false }) => {
+export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate }) => {
   const [formData, setFormData] = useState<CalcInput>({
     brutoMaandsalaris: 0,
     leeftijd: undefined,
@@ -20,6 +19,29 @@ export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate, isLoading =
   const [errors, setErrors] = useState<ValidationError[]>([]);
   const [touched, setTouched] = useState<Set<string>>(new Set());
 
+  // Real-time berekeningen triggeren wanneer formData verandert
+  useEffect(() => {
+    // Alleen berekenen als er minimaal een bruto maandsalaris en leeftijd is ingevuld
+    if (formData.brutoMaandsalaris > 0 && formData.leeftijd) {
+      // Kleine vertraging om te voorkomen dat er te veel berekeningen worden uitgevoerd
+      const timeoutId = setTimeout(() => {
+        // Valideer input voordat we berekenen
+        const validation = validateSalaryInput({
+          brutoMaandsalaris: formData.brutoMaandsalaris.toString(),
+          leeftijd: formData.leeftijd!.toString(),
+          urenPerWeek: formData.urenPerWeek.toString(),
+          pensioenBijdragePct: formData.pensioenBijdragePct.toString(),
+        });
+
+        if (validation.isValid) {
+          onCalculate(formData);
+        }
+      }, 300);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [formData, onCalculate]);
+
   const handleInputChange = (field: keyof CalcInput, value: string | number | boolean | undefined) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     
@@ -28,33 +50,22 @@ export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate, isLoading =
     
     // Clear error for this field
     setErrors(prev => prev.filter(error => error.field !== field));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
     
-    // Check if required fields are filled
-    if (!(formData.brutoMaandsalaris > 0) || !formData.leeftijd) {
-      setErrors([
-        { field: 'brutoMaandsalaris', message: 'Bruto maandsalaris is verplicht' },
-        { field: 'leeftijd', message: 'Leeftijd is verplicht' }
-      ]);
-      return;
-    }
-    
-    const validation = validateSalaryInput({
-      brutoMaandsalaris: formData.brutoMaandsalaris.toString(),
-      leeftijd: formData.leeftijd.toString(),
-      urenPerWeek: formData.urenPerWeek.toString(),
-      pensioenBijdragePct: formData.pensioenBijdragePct.toString(),
-    });
+    // Valideer het veld onmiddellijk
+    if (field === 'brutoMaandsalaris' || field === 'leeftijd' || field === 'urenPerWeek' || field === 'pensioenBijdragePct') {
+      const validation = validateSalaryInput({
+        brutoMaandsalaris: field === 'brutoMaandsalaris' ? (value || 0).toString() : formData.brutoMaandsalaris.toString(),
+        leeftijd: field === 'leeftijd' ? (value || '').toString() : (formData.leeftijd || '').toString(),
+        urenPerWeek: field === 'urenPerWeek' ? (value || 0).toString() : formData.urenPerWeek.toString(),
+        pensioenBijdragePct: field === 'pensioenBijdragePct' ? (value || 0).toString() : formData.pensioenBijdragePct.toString(),
+      });
 
-    if (!validation.isValid) {
-      setErrors(validation.errors);
-      return;
+      // Toon alleen fouten voor dit specifieke veld
+      const fieldErrors = validation.errors.filter(error => error.field === field);
+      if (fieldErrors.length > 0) {
+        setErrors(prev => [...prev.filter(error => error.field !== field), ...fieldErrors]);
+      }
     }
-
-    onCalculate(formData);
   };
 
   const getFieldError = (field: string): string | undefined => {
@@ -66,7 +77,7 @@ export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate, isLoading =
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
+    <div className="space-y-8">
       {/* Main Input Fields */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Bruto Maandsalaris */}
@@ -98,7 +109,6 @@ export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate, isLoading =
                   ? 'border-red-300 focus:ring-red-500/20 focus:border-red-500 bg-red-50' 
                   : 'border-slate-200 hover:border-slate-300 bg-white'
               }`}
-              placeholder="4000"
               min="0"
               step="100"
               required
@@ -137,7 +147,6 @@ export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate, isLoading =
                 ? 'border-red-300 focus:ring-red-500/20 focus:border-red-500 bg-red-50' 
                 : 'border-slate-200 hover:border-slate-300 bg-white'
             }`}
-            placeholder="35"
             min="16"
             max="100"
             required
@@ -175,7 +184,6 @@ export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate, isLoading =
                 ? 'border-red-300 focus:ring-red-500/20 focus:border-red-500 bg-red-50' 
                 : 'border-slate-200 hover:border-slate-300 bg-white'
             }`}
-            placeholder="40"
             min="1"
             max="60"
             required
@@ -206,14 +214,13 @@ export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate, isLoading =
           <input
             type="number"
             id="pensioenBijdragePct"
-            value={formData.pensioenBijdragePct || ''}
-            onChange={(e) => handleInputChange('pensioenBijdragePct', parseFloat(e.target.value) || 0)}
+            value={formData.pensioenBijdragePct}
+            onChange={(e) => handleInputChange('pensioenBijdragePct', e.target.value === '' ? 0 : parseFloat(e.target.value))}
             className={`px-4 py-4 border-2 rounded-xl focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all duration-200 w-full text-lg font-medium ${
               getFieldError('pensioenBijdragePct') && isFieldTouched('pensioenBijdragePct') 
                 ? 'border-red-300 focus:ring-red-500/20 focus:border-red-500 bg-red-50' 
                 : 'border-slate-200 hover:border-slate-300 bg-white'
             }`}
-            placeholder="0"
             min="0"
             max="100"
             step="0.1"
@@ -266,26 +273,13 @@ export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate, isLoading =
         </div>
       </div>
 
-      {/* Submit Button */}
-      <button
-        type="submit"
-        disabled={isLoading}
-        className="w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold text-lg rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-lg"
-      >
-        {isLoading ? (
-          <div className="flex items-center justify-center gap-3">
-            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-            <span>Berekenen...</span>
-          </div>
-        ) : (
-          <div className="flex items-center justify-center gap-3">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clipRule="evenodd" />
-            </svg>
-            <span>Bereken Netto Salaris</span>
-          </div>
-        )}
-      </button>
-    </form>
+      {/* Real-time berekening info */}
+      <div className="text-center p-4 bg-blue-50/50 rounded-xl border border-blue-200/50">
+        <div className="flex items-center justify-center gap-2 text-blue-700">
+          <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+          <span className="text-sm font-medium">Berekeningen worden automatisch bijgewerkt terwijl je typt</span>
+        </div>
+      </div>
+    </div>
   );
 };
