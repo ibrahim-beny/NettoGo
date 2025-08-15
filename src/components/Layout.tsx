@@ -1,4 +1,5 @@
 import React from 'react';
+import logoImage from '../assets/uitgesneden_logo.png';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -87,7 +88,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <div className="flex items-center space-x-3">
                 <img 
-                  src="/NettoGo_logo.png" 
+                  src={logoImage} 
                   alt="NettoGo Logo" 
                   className="w-10 h-10 object-contain"
                 />
