@@ -2,41 +2,183 @@
 <html lang="nl">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- Favicons and Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/NettoGo_zondertext.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/NettoGo_zondertext.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/NettoGo_logo.png" />
+    <link rel="manifest" href="/manifest.json" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Performance Optimizations -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="NettoGo Calculator" />
+    <meta name="msapplication-TileColor" content="#3b82f6" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/NettoGo_logo.png" as="image" type="image/png" />
+    <link rel="preload" href="/src/main.tsx" as="script" />
+    
     <!-- SEO Meta Tags -->
-    <title>NettoGo | Bruto naar Netto Salaris Calculator 2025</title>
-    <meta name="description" content="NettoGo - De slimste manier om je netto salaris te berekenen. Gratis bruto naar netto calculator voor 2025 met Nederlandse belastingregels. Snel, betrouwbaar en privacy-vriendelijk." />
-    <meta name="keywords" content="nettoGo, bruto netto calculator 2025, netto salaris berekenen nederland, bruto naar netto salaris tool, salaris calculator, belasting calculator" />
+    <title>Bruto Netto Calculator 2025 | Gratis Salaris Berekenen Nederland | NettoGo</title>
+    <meta name="description" content="🔥 Gratis bruto naar netto calculator 2025! Bereken je netto salaris incl. vakantiegeld, 13e maand, loonheffing & belasting. Nederlandse belastingtarieven 2025. Privacy-vriendelijk & real-time!" />
+    <meta name="keywords" content="bruto naar netto, bruto netto calculator, netto salaris berekenen, salaris berekenen 2025, bruto netto berekening, loon berekenen, bruto netto uitrekenen, netto inkomen berekenen, salaris omrekenen, loonheffing berekenen, net salary calculator Netherlands, gross to net Netherlands, Dutch salary calculator, Netherlands income calculator, net income Netherlands, salary after tax Netherlands, gross net calculator Netherlands, Dutch net salary calculator, net pay calculator Netherlands, Netherlands tax calculator, belastingtarieven 2025 Nederland, loonbelasting berekenen 2025, belasting netto salaris 2025, loonheffing 2025, minimumloon netto 2025, cao salaris 2025 berekenen, vakantiegeld berekenen 2025, 13e maand netto 2025, Netherlands salary calculator 2025, Dutch income tax 2025, Netherlands tax rates 2025, net salary Netherlands 2025, gross net Netherlands 2025, minimum wage Netherlands 2025, holiday allowance Netherlands 2025, 13th month salary Netherlands, salarisberekening voor zzp, salarisberekening parttime, netto salaris fulltime, netto salaris parttime, salarisberekening zonder pensioen, netto salaris met 13e maand, salarisberekening bijbaan, bruto naar netto minimumloon, net salary Netherlands expat, 30% ruling netherlands calculator, salary calculator Netherlands expat, Dutch salary after tax for expats, Netherlands salary for foreigners, gross to net Netherlands expat, how much is net salary in Netherlands, expat salary calculator Netherlands, NettoGo" />
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="author" content="NettoGo" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
+    <meta name="language" content="Dutch" />
+    <meta name="geo.region" content="NL" />
+    <meta name="geo.country" content="Netherlands" />
+    <meta name="distribution" content="global" />
+    <meta name="rating" content="general" />
+    <meta name="revisit-after" content="1 days" />
+    <meta http-equiv="content-language" content="nl-NL" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://nettoGo.vercel.app/" />
+    
+    <!-- Alternate Language Tags -->
+    <link rel="alternate" hreflang="nl" href="https://nettoGo.vercel.app/" />
+    <link rel="alternate" hreflang="en" href="https://nettoGo.vercel.app/" />
+    <link rel="alternate" hreflang="x-default" href="https://nettoGo.vercel.app/" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://nettoGo.vercel.app/" />
-    <meta property="og:title" content="NettoGo | Bruto naar Netto Salaris Calculator 2025" />
-    <meta property="og:description" content="NettoGo - De slimste manier om je netto salaris te berekenen. Gratis calculator met Nederlandse belastingregels 2025." />
+    <meta property="og:title" content="🔥 Gratis Bruto Netto Calculator 2025 | Bereken je Netto Salaris | NettoGo" />
+    <meta property="og:description" content="Bereken direct je netto salaris! Gratis bruto naar netto calculator 2025 met Nederlandse belastingtarieven. Incl. vakantiegeld, 13e maand & loonheffing. 100% privacy-vriendelijk!" />
+    <meta property="og:image" content="https://nettoGo.vercel.app/NettoGo_logo.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="NettoGo Bruto Netto Calculator 2025 - Bereken je netto salaris" />
+    <meta property="og:site_name" content="NettoGo" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta property="article:author" content="NettoGo" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://nettoGo.vercel.app/" />
-    <meta property="twitter:title" content="NettoGo | Bruto naar Netto Salaris Calculator 2025" />
-    <meta property="twitter:description" content="NettoGo - De slimste manier om je netto salaris te berekenen. Gratis calculator met Nederlandse belastingregels 2025." />
+    <meta property="twitter:title" content="🔥 Gratis Bruto Netto Calculator 2025 | Bereken je Netto Salaris" />
+    <meta property="twitter:description" content="Bereken direct je netto salaris! Gratis bruto naar netto calculator 2025 met Nederlandse belastingtarieven. Incl. vakantiegeld, 13e maand & loonheffing. 100% privacy-vriendelijk!" />
+    <meta property="twitter:image" content="https://nettoGo.vercel.app/NettoGo_logo.png" />
+    <meta property="twitter:image:alt" content="NettoGo Bruto Netto Calculator 2025" />
+    <meta property="twitter:creator" content="@NettoGo" />
+    <meta property="twitter:site" content="@NettoGo" />
     
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "NettoGo",
-      "description": "De slimste manier om je netto salaris te berekenen met Nederlandse belastingregels 2025",
+      "name": "NettoGo - Bruto Netto Calculator 2025",
+      "alternateName": ["Bruto Netto Calculator", "Netto Salaris Calculator", "Dutch Salary Calculator"],
+      "description": "Gratis bruto naar netto calculator 2025 voor Nederland. Bereken je netto salaris inclusief vakantiegeld, 13e maand, loonheffing en belasting. Nederlandse belastingtarieven 2025.",
       "url": "https://nettoGo.vercel.app/",
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Web Browser",
+      "browserRequirements": "Requires JavaScript",
+      "softwareVersion": "2025.1.0",
+      "dateCreated": "2025-01-01",
+      "dateModified": "2025-01-01",
+      "inLanguage": ["nl-NL", "en"],
+      "keywords": [
+        "bruto naar netto",
+        "bruto netto calculator",
+        "netto salaris berekenen",
+        "salaris berekenen 2025",
+        "loonheffing berekenen",
+        "Nederlandse belastingtarieven",
+        "vakantiegeld berekenen",
+        "13e maand calculator",
+        "net salary calculator Netherlands",
+        "Dutch salary calculator",
+        "gross to net Netherlands"
+      ],
       "offers": {
         "@type": "Offer",
         "price": "0",
-        "priceCurrency": "EUR"
-      }
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "NettoGo",
+        "url": "https://nettoGo.vercel.app/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://nettoGo.vercel.app/NettoGo_logo.png"
+        }
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "NettoGo"
+      },
+      "featureList": [
+        "Real-time bruto naar netto berekeningen",
+        "Nederlandse belastingtarieven 2025",
+        "Vakantiegeld berekening (8%)",
+        "13e maand berekening",
+        "Loonheffing en belasting berekening",
+        "100% privacy-vriendelijk",
+        "Geen data opslag",
+        "Responsive design",
+        "Gratis te gebruiken"
+      ],
+      "applicationSubCategory": "Salary Calculator",
+      "countriesSupported": "NL",
+      "availableLanguage": ["Dutch", "English"]
+    }
+    </script>
+    
+    <!-- FAQ Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Hoe bereken ik mijn netto salaris uit mijn bruto salaris?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Om je netto salaris te berekenen, trek je van je bruto salaris de loonheffing (inkomstenbelasting en premies) af. Deze berekening houdt rekening met de Nederlandse belastingtarieven 2025, algemene heffingskorting en arbeidskorting. NettoGo berekent dit automatisch voor je."
+          }
+        },
+        {
+          "@type": "Question", 
+          "name": "Welke belastingtarieven gelden er in Nederland in 2025?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In 2025 gelden er in Nederland verschillende belastingschijven voor Box 1 inkomen. De exacte tarieven worden gebruikt in onze calculator om je netto salaris correct te berekenen inclusief algemene heffingskorting en arbeidskorting."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is vakantiegeld en 13e maand inclusief in de berekening?",
+          "acceptedAnswer": {
+            "@type": "Answer", 
+            "text": "Ja, je kunt vakantiegeld (standaard 8%) en 13e maand toevoegen aan de berekening. NettoGo berekent dan je totale netto jaarinkomen inclusief deze extra uitkeringen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wordt mijn data opgeslagen bij het gebruik van de calculator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nee, NettoGo slaat geen data op. Alle berekeningen gebeuren 100% lokaal in je browser. Je salarisgegevens worden nooit naar een server gestuurd of opgeslagen."
+          }
+        }
+      ]
     }
     </script>
   </head>

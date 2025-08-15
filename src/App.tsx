@@ -32,13 +32,16 @@ function App() {
     <Layout>
       <div className="max-w-6xl mx-auto">
         {/* Hero Section */}
-        <div className="text-center mb-16">
+        <header className="text-center mb-16">
           <div className="mb-8">
             <div className="inline-flex items-center justify-center mb-2">
               <img 
                 src={logoImage} 
                 alt="NettoGo Logo" 
                 className="w-56 h-56 object-contain drop-shadow-2xl"
+                width="224"
+                height="224"
+                loading="eager"
               />
             </div>
           </div>
@@ -46,24 +49,10 @@ function App() {
             NettoGo
           </h1>
           <p className="text-2xl text-slate-600 max-w-3xl mx-auto mb-8 leading-relaxed">
-            De slimste manier om je netto salaris te berekenen. 
+            De snelste manier om je netto salaris te berekenen. 
             Gebaseerd op de officiële Nederlandse belastingregels van 2025.
           </p>
-          <div className="flex flex-wrap justify-center gap-6">
-            <div className="flex items-center px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-green-200/50 shadow-sm">
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></span>
-              <span className="text-sm font-medium text-slate-700">100% Privacy-vriendelijk</span>
-            </div>
-            <div className="flex items-center px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-blue-200/50 shadow-sm">
-              <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 animate-pulse"></span>
-              <span className="text-sm font-medium text-slate-700">Real-time berekeningen</span>
-            </div>
-            <div className="flex items-center px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-purple-200/50 shadow-sm">
-              <span className="w-2 h-2 bg-purple-400 rounded-full mr-3"></span>
-              <span className="text-sm font-medium text-slate-700">Nederlandse belastingregels</span>
-            </div>
-          </div>
-        </div>
+        </header>
 
         {/* Error Display */}
         {error && (
@@ -87,28 +76,30 @@ function App() {
         )}
 
         {/* Main Calculator Section */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 mb-20">
+        <section className="grid grid-cols-1 xl:grid-cols-2 gap-10 mb-20" role="main" aria-label="Bruto Netto Calculator">
           {/* Input Form */}
-          <div className="bg-white/70 backdrop-blur-xl rounded-3xl border border-white/50 shadow-2xl shadow-slate-200/50 p-8">
-            <div className="flex items-center space-x-3 mb-8">
+          <article className="bg-white/70 backdrop-blur-xl rounded-3xl border border-white/50 shadow-2xl shadow-slate-200/50 p-8">
+            <header className="flex items-center space-x-3 mb-8">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
-                <span className="text-white text-lg">📝</span>
+                <span className="text-white text-lg" aria-hidden="true">📝</span>
               </div>
               <h2 className="text-2xl font-bold text-slate-800">
                 Vul je gegevens in
               </h2>
+            </header>
+            <div role="form" aria-label="Salarisgegevens invoeren voor bruto naar netto berekening">
+              <SalaryForm onCalculate={handleCalculate} />
             </div>
-            <SalaryForm onCalculate={handleCalculate} />
-          </div>
+          </article>
 
           {/* Results */}
-          <div className="xl:col-span-1">
+          <aside className="xl:col-span-1" aria-label="Netto salaris resultaten">
             <NetResult result={result} isLoading={isLoading} />
-          </div>
-        </div>
+          </aside>
+        </section>
 
         {/* CTA Section */}
-        <div className="text-center bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl border border-blue-200/50 p-12 shadow-xl">
+        <section className="text-center bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl border border-blue-200/50 p-12 shadow-xl mb-20">
           <h2 className="text-3xl font-bold text-slate-800 mb-4">
             Klaar om je netto salaris te berekenen?
           </h2>
@@ -120,13 +111,84 @@ function App() {
               <span className="text-sm font-medium text-slate-700">⚡ Real-time Updates</span>
             </div>
             <div className="px-6 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-purple-200/50 shadow-sm">
-              <span className="text-sm font-medium text-slate-700">🔒 100% Veilig</span>
+              <span className="text-sm font-medium text-slate-700">📊 Accurate berekening</span>
             </div>
             <div className="px-6 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-green-200/50 shadow-sm">
-              <span className="text-sm font-medium text-slate-700">📱 Responsive</span>
+              <span className="text-sm font-medium text-slate-700">💰 100% Gratis</span>
             </div>
           </div>
-        </div>
+        </section>
+
+        {/* FAQ Section for SEO */}
+        <section className="bg-white/60 backdrop-blur-xl rounded-3xl border border-white/50 shadow-xl p-12 mb-20">
+          <h2 className="text-3xl font-bold text-slate-800 mb-8 text-center">
+            Veelgestelde vragen over bruto netto berekening
+          </h2>
+          <div className="max-w-4xl mx-auto space-y-6">
+            <details className="group">
+              <summary className="flex justify-between items-center w-full p-6 bg-slate-50 rounded-xl cursor-pointer hover:bg-slate-100 transition-colors">
+                <h3 className="text-lg font-semibold text-slate-800">
+                  Hoe bereken ik mijn netto salaris uit mijn bruto salaris?
+                </h3>
+                <span className="text-2xl group-open:rotate-180 transition-transform">+</span>
+              </summary>
+              <div className="p-6 bg-white rounded-xl mt-2">
+                <p className="text-slate-700 leading-relaxed">
+                  Om je <strong>netto salaris te berekenen</strong> trek je van je bruto salaris de loonheffing af. 
+                  Dit omvat inkomstenbelasting, algemene heffingskorting, arbeidskorting en eventuele premies. 
+                  NettoGo gebruikt de officiële <strong>Nederlandse belastingtarieven 2025</strong> voor een accurate berekening.
+                </p>
+              </div>
+            </details>
+
+            <details className="group">
+              <summary className="flex justify-between items-center w-full p-6 bg-slate-50 rounded-xl cursor-pointer hover:bg-slate-100 transition-colors">
+                <h3 className="text-lg font-semibold text-slate-800">
+                  Welke belastingtarieven gelden er in Nederland in 2025?
+                </h3>
+                <span className="text-2xl group-open:rotate-180 transition-transform">+</span>
+              </summary>
+              <div className="p-6 bg-white rounded-xl mt-2">
+                <p className="text-slate-700 leading-relaxed">
+                  In 2025 hanteert Nederland verschillende <strong>belastingschijven voor Box 1 inkomen</strong>. 
+                  Onze calculator gebruikt automatisch de juiste tarieven inclusief algemene heffingskorting en arbeidskorting 
+                  voor een <strong>accurate netto salaris berekening</strong>.
+                </p>
+              </div>
+            </details>
+
+            <details className="group">
+              <summary className="flex justify-between items-center w-full p-6 bg-slate-50 rounded-xl cursor-pointer hover:bg-slate-100 transition-colors">
+                <h3 className="text-lg font-semibold text-slate-800">
+                  Hoe zit het met vakantiegeld en 13e maand in de berekening?
+                </h3>
+                <span className="text-2xl group-open:rotate-180 transition-transform">+</span>
+              </summary>
+              <div className="p-6 bg-white rounded-xl mt-2">
+                <p className="text-slate-700 leading-relaxed">
+                  Je kunt <strong>vakantiegeld (8%)</strong> en <strong>13e maand</strong> toevoegen aan de berekening. 
+                  NettoGo berekent dan je totale netto jaarinkomen inclusief deze extra uitkeringen, 
+                  zodat je precies weet wat je jaarlijks netto ontvangt.
+                </p>
+              </div>
+            </details>
+
+            <details className="group">
+              <summary className="flex justify-between items-center w-full p-6 bg-slate-50 rounded-xl cursor-pointer hover:bg-slate-100 transition-colors">
+                <h3 className="text-lg font-semibold text-slate-800">
+                  Is deze bruto netto calculator geschikt voor ZZP'ers en expats?
+                </h3>
+                <span className="text-2xl group-open:rotate-180 transition-transform">+</span>
+              </summary>
+              <div className="p-6 bg-white rounded-xl mt-2">
+                <p className="text-slate-700 leading-relaxed">
+                  Deze calculator is primair voor werknemers in loondienst. Voor <strong>ZZP'ers</strong> gelden andere belastingregels. 
+                  <strong>Expats met de 30% ruling</strong> hebben speciale regelingen die niet in deze standaard calculator zitten.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
       </div>
     </Layout>
   );

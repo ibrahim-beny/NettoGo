@@ -27,43 +27,44 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="space-y-4">
               <div className="flex items-center space-x-3 mb-4">
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white text-sm">📊</span>
+                  <span className="text-white text-sm" aria-hidden="true">📊</span>
                 </div>
                 <h3 className="text-lg font-semibold text-blue-900">
-                  Over de Calculator
+                  Bruto Netto Calculator 2025
                 </h3>
               </div>
               <p className="text-blue-700 leading-relaxed">
-                Deze calculator gebruikt de officiële Nederlandse belastingregels van 2025 
-                om je netto salaris te berekenen. Alle berekeningen gebeuren lokaal in je browser.
+                NettoGo gebruikt de officiële <strong>Nederlandse belastingtarieven 2025</strong> 
+                voor accurate <strong>bruto naar netto salaris berekeningen</strong>. 
+                Inclusief loonheffing, vakantiegeld en 13e maand berekening.
               </p>
             </div>
             
             <div className="space-y-4">
               <div className="flex items-center space-x-3 mb-4">
                 <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-blue-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white text-sm">ℹ️</span>
+                  <span className="text-white text-sm" aria-hidden="true">ℹ️</span>
                 </div>
                 <h3 className="text-lg font-semibold text-blue-900">
-                  Belangrijke Informatie
+                  Nederlandse Belastingregels 2025
                 </h3>
               </div>
               <ul className="text-blue-700 space-y-2">
                 <li className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
-                  <span>Box 1 tarieven 2025</span>
+                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" aria-hidden="true"></span>
+                  <span>Box 1 belastingtarieven 2025</span>
                 </li>
                 <li className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></span>
-                  <span>Algemene heffingskorting</span>
+                  <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full" aria-hidden="true"></span>
+                  <span>Algemene heffingskorting berekening</span>
                 </li>
                 <li className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 bg-blue-600 rounded-full"></span>
-                  <span>Arbeidskorting</span>
+                  <span className="w-1.5 h-1.5 bg-blue-600 rounded-full" aria-hidden="true"></span>
+                  <span>Arbeidskorting automatisch toegepast</span>
                 </li>
                 <li className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 bg-indigo-600 rounded-full"></span>
-                  <span>Vakantiegeld standaard 8%</span>
+                  <span className="w-1.5 h-1.5 bg-indigo-600 rounded-full" aria-hidden="true"></span>
+                  <span>Vakantiegeld 8% standaard</span>
                 </li>
               </ul>
             </div>
@@ -71,15 +72,15 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="space-y-4">
               <div className="flex items-center space-x-3 mb-4">
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white text-sm">🔒</span>
+                  <span className="text-white text-sm" aria-hidden="true">🔒</span>
                 </div>
                 <h3 className="text-lg font-semibold text-blue-900">
                   Privacy & Veiligheid
                 </h3>
               </div>
               <p className="text-blue-700 leading-relaxed">
-                Je gegevens worden nooit opgeslagen of naar een server gestuurd. 
-                Alle berekeningen gebeuren 100% lokaal in je browser.
+                <strong>100% privacy-vriendelijk</strong> - je salarisgegevens worden nooit opgeslagen. 
+                Alle <strong>netto salaris berekeningen</strong> gebeuren lokaal in je browser zonder data naar servers.
               </p>
             </div>
           </div>
@@ -94,7 +95,10 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 />
                 <p className="text-sm text-blue-600 text-center md:text-left">
                   © 2025 NettoGo. Deze tool is bedoeld voor informatieve doeleinden. 
-                  Voor officieel advies raadpleeg een belastingadviseur.
+                  Voor officieel advies raadpleeg een belastingadviseur.<br />
+                  <span className="text-xs text-slate-500 mt-1 block">
+                    Free Dutch salary calculator 2025 | Calculate net salary Netherlands | Gross to net converter
+                  </span>
                 </p>
               </div>
               <div className="flex items-center space-x-4 text-sm text-blue-600">

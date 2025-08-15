@@ -83,7 +83,7 @@ export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate }) => {
         {/* Bruto Maandsalaris */}
         <div className="space-y-3">
           <label htmlFor="brutoMaandsalaris" className="flex items-center gap-2 text-sm font-semibold text-slate-700">
-            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+            <div className="w-2 h-2 bg-blue-500 rounded-full" aria-hidden="true"></div>
             Bruto Maandsalaris
             <div className="relative group">
               <svg className="w-4 h-4 text-slate-400 cursor-help hover:text-slate-600 transition-colors" fill="currentColor" viewBox="0 0 20 20">
@@ -102,6 +102,7 @@ export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate }) => {
             <input
               type="number"
               id="brutoMaandsalaris"
+              name="bruto-maandsalaris"
               value={formData.brutoMaandsalaris === 0 ? '' : formData.brutoMaandsalaris}
               onChange={(e) => handleInputChange('brutoMaandsalaris', e.target.value === '' ? 0 : parseFloat(e.target.value))}
               className={`pl-10 pr-4 py-4 border-2 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-200 w-full text-lg font-medium ${
@@ -112,6 +113,8 @@ export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate }) => {
               min="0"
               step="100"
               required
+              aria-label="Voer je bruto maandsalaris in euro's in voor netto salaris berekening"
+              placeholder="Bijv. 3500"
             />
           </div>
           {getFieldError('brutoMaandsalaris') && isFieldTouched('brutoMaandsalaris') && (
