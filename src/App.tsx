@@ -3,7 +3,7 @@ import { Layout } from './components/Layout';
 import { SalaryForm } from './components/SalaryForm';
 import { NetResult } from './components/NetResult';
 import { CalcInput, CalcOutput, calculateNetMonthly } from './utils/calculator';
-import logoImage from './assets/NettoGo_zondertext.png';
+import logoImage from './assets/uitgesneden_logo.png';
 
 function App() {
   const [result, setResult] = useState<CalcOutput | null>(null);
@@ -34,7 +34,7 @@ function App() {
         {/* Hero Section */}
         <div className="text-center mb-16">
           <div className="mb-8">
-            <div className="inline-flex items-center justify-center">
+            <div className="inline-flex items-center justify-center mb-2">
               <img 
                 src={logoImage} 
                 alt="NettoGo Logo" 
