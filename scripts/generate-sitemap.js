@@ -20,8 +20,7 @@ function generateSitemap() {
   const lastModified = new Date().toISOString().replace('Z', '+00:00');
   
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">`;
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
 
   urls.forEach(url => {
     sitemap += `
@@ -29,25 +28,11 @@ function generateSitemap() {
     <loc>${siteUrl}${url.loc}</loc>
     <lastmod>${lastModified}</lastmod>`;
 
-    // Voeg afbeeldingen toe alleen aan hoofdpagina
-    if (url.loc === '/') {
-      sitemap += `
-    <image:image>
-      <image:loc>${siteUrl}/NettoGo_logo.png</image:loc>
-      <image:title>NettoGo - Bruto Netto Calculator 2025</image:title>
-      <image:caption>Gratis bruto naar netto salaris calculator voor Nederland met belastingtarieven 2025</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>${siteUrl}/NettoGo_zondertext.png</image:loc>
-      <image:title>NettoGo Logo</image:title>
-      <image:caption>NettoGo bruto netto calculator logo</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>${siteUrl}/uitgesneden_logo.png</image:loc>
-      <image:title>NettoGo App Logo</image:title>
-      <image:caption>NettoGo salarisberekening tool logo</image:caption>
-    </image:image>`;
-    }
+    // Tijdelijk uitgeschakeld om XML probleem op te lossen
+    // Image tags kunnen later weer toegevoegd worden
+    // if (url.loc === '/') {
+    //   // image content hier
+    // }
 
     sitemap += `
   </url>`;
