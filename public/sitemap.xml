@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-
   <url>
     <loc>https://www.nettogo.nl/</loc>
-    <lastmod>2025-08-18T18:43:20.754Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/" />
     <image:image>
       <image:loc>https://www.nettogo.nl/NettoGo_logo.png</image:loc>
       <image:title>NettoGo - Bruto Netto Calculator 2025</image:title>
@@ -29,165 +24,110 @@
   </url>
   <url>
     <loc>https://www.nettogo.nl/bruto-naar-netto</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/bruto-naar-netto" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/bruto-naar-netto" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/bruto-naar-netto" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/salaris-calculator</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/salaris-calculator" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/salaris-calculator" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/salaris-calculator" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/netto-salaris-berekenen</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/netto-salaris-berekenen" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/netto-salaris-berekenen" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/netto-salaris-berekenen" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/belastingtarieven-2025</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>quarterly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/belastingtarieven-2025" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/belastingtarieven-2025" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/belastingtarieven-2025" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/vakantiegeld-berekenen</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/vakantiegeld-berekenen" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/vakantiegeld-berekenen" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/vakantiegeld-berekenen" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/13e-maand-berekenen</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/13e-maand-berekenen" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/13e-maand-berekenen" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/13e-maand-berekenen" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/loonheffing-berekenen</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>quarterly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/loonheffing-berekenen" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/loonheffing-berekenen" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/loonheffing-berekenen" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/minimumloon-netto-2025</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>quarterly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/minimumloon-netto-2025" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/minimumloon-netto-2025" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/minimumloon-netto-2025" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/parttime-salaris-berekenen</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/parttime-salaris-berekenen" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/parttime-salaris-berekenen" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/parttime-salaris-berekenen" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/fulltime-salaris-berekenen</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/fulltime-salaris-berekenen" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/fulltime-salaris-berekenen" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/fulltime-salaris-berekenen" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/salary-calculator-netherlands-expat</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/salary-calculator-netherlands-expat" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/salary-calculator-netherlands-expat" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/salary-calculator-netherlands-expat" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/30-percent-ruling-calculator</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>quarterly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/30-percent-ruling-calculator" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/30-percent-ruling-calculator" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/30-percent-ruling-calculator" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/zzp-netto-inkomen-berekenen</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/zzp-netto-inkomen-berekenen" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/zzp-netto-inkomen-berekenen" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/zzp-netto-inkomen-berekenen" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/cao-salaris-berekenen</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>quarterly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/cao-salaris-berekenen" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/cao-salaris-berekenen" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/cao-salaris-berekenen" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/privacy</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/privacy" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/privacy" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/privacy" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/terms</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/terms" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/terms" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/terms" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/about</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/about" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/about" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/about" />
   </url>
   <url>
     <loc>https://www.nettogo.nl/contact</loc>
-    <lastmod>2025-08-18T18:43:20.755Z</lastmod>
+    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.nettogo.nl/contact" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.nettogo.nl/contact" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.nettogo.nl/contact" />
   </url>
-
 </urlset>
