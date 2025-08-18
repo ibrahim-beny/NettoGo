@@ -234,5 +234,30 @@ function writeSitemapFiles() {
   console.log(`📊 Total URLs in sitemap: ${urls.length}`);
 }
 
+// Validatie functie
+function validateSitemap() {
+  const sitemapPath = path.join(process.cwd(), 'public', 'sitemap.xml');
+  
+  if (fs.existsSync(sitemapPath)) {
+    const content = fs.readFileSync(sitemapPath, 'utf8');
+    const urlCount = (content.match(/<url>/g) || []).length;
+    const hasXmlDeclaration = content.startsWith('<?xml');
+    const hasClosingTag = content.includes('</urlset>');
+    
+    console.log('\n🔍 Sitemap Validation:');
+    console.log(`   ✅ XML Declaration: ${hasXmlDeclaration}`);
+    console.log(`   ✅ Closing Tag: ${hasClosingTag}`);
+    console.log(`   ✅ URL Count: ${urlCount}`);
+    console.log(`   ✅ File Size: ${(content.length / 1024).toFixed(2)} KB`);
+    
+    if (urlCount !== urls.length) {
+      console.log(`   ⚠️  Warning: Expected ${urls.length} URLs, found ${urlCount}`);
+    }
+  } else {
+    console.log('   ❌ Sitemap file not found');
+  }
+}
+
 // Voer script uit
 writeSitemapFiles();
+validateSitemap();
