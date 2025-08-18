@@ -3,103 +3,15 @@ import path from 'path';
 
 const siteUrl = 'https://www.nettogo.nl';
 
-// Definieer alle belangrijke URL's voor NettoGo
+// Definieer alleen bestaande URL's voor NettoGo (om 404 errors te voorkomen)
 const urls = [
   {
     loc: '/',
     changefreq: 'daily',
     priority: '1.0'
-  },
-  {
-    loc: '/bruto-naar-netto',
-    changefreq: 'weekly',
-    priority: '0.9'
-  },
-  {
-    loc: '/salaris-calculator',
-    changefreq: 'weekly',
-    priority: '0.9'
-  },
-  {
-    loc: '/netto-salaris-berekenen',
-    changefreq: 'weekly',
-    priority: '0.9'
-  },
-  {
-    loc: '/belastingtarieven-2025',
-    changefreq: 'quarterly',
-    priority: '0.8'
-  },
-  {
-    loc: '/vakantiegeld-berekenen',
-    changefreq: 'monthly',
-    priority: '0.7'
-  },
-  {
-    loc: '/13e-maand-berekenen',
-    changefreq: 'monthly',
-    priority: '0.7'
-  },
-  {
-    loc: '/loonheffing-berekenen',
-    changefreq: 'quarterly',
-    priority: '0.8'
-  },
-  {
-    loc: '/minimumloon-netto-2025',
-    changefreq: 'quarterly',
-    priority: '0.8'
-  },
-  {
-    loc: '/parttime-salaris-berekenen',
-    changefreq: 'monthly',
-    priority: '0.7'
-  },
-  {
-    loc: '/fulltime-salaris-berekenen',
-    changefreq: 'monthly',
-    priority: '0.7'
-  },
-  {
-    loc: '/salary-calculator-netherlands-expat',
-    changefreq: 'monthly',
-    priority: '0.8'
-  },
-  {
-    loc: '/30-percent-ruling-calculator',
-    changefreq: 'quarterly',
-    priority: '0.7'
-  },
-  {
-    loc: '/zzp-netto-inkomen-berekenen',
-    changefreq: 'monthly',
-    priority: '0.7'
-  },
-  {
-    loc: '/cao-salaris-berekenen',
-    changefreq: 'quarterly',
-    priority: '0.6'
-  },
-  {
-    loc: '/privacy',
-    changefreq: 'yearly',
-    priority: '0.3'
-  },
-  {
-    loc: '/terms',
-    changefreq: 'yearly',
-    priority: '0.3'
-  },
-  {
-    loc: '/about',
-    changefreq: 'monthly',
-    priority: '0.4'
-  },
-  {
-    loc: '/contact',
-    changefreq: 'monthly',
-    priority: '0.4'
   }
+  // Andere URL's worden alleen toegevoegd als ze echt bestaan
+  // Voor nu beginnen we met alleen de homepage die gegarandeerd werkt
 ];
 
 // Genereer sitemap XML met correcte officiële structuur
@@ -115,9 +27,10 @@ function generateSitemap() {
     sitemap += `
   <url>
     <loc>${siteUrl}${url.loc}</loc>
-    <lastmod>${lastModified}</lastmod>
-    <changefreq>${url.changefreq}</changefreq>
-    <priority>${url.priority}</priority>`;
+    <lastmod>${lastModified}</lastmod>`;
+
+    // changefreq en priority zijn optioneel - Google negeert ze grotendeels
+    // Voor nu laten we ze weg voor een cleaner sitemap
 
     // Voeg afbeeldingen toe alleen aan hoofdpagina
     if (url.loc === '/') {

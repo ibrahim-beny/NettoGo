@@ -3,9 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.nettogo.nl/</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2025-08-18T19:05:05.729Z</lastmod>
     <image:image>
       <image:loc>https://www.nettogo.nl/NettoGo_logo.png</image:loc>
       <image:title>NettoGo - Bruto Netto Calculator 2025</image:title>
@@ -21,113 +19,5 @@
       <image:title>NettoGo App Logo</image:title>
       <image:caption>NettoGo salarisberekening tool logo</image:caption>
     </image:image>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/bruto-naar-netto</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/salaris-calculator</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/netto-salaris-berekenen</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/belastingtarieven-2025</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>quarterly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/vakantiegeld-berekenen</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/13e-maand-berekenen</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/loonheffing-berekenen</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>quarterly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/minimumloon-netto-2025</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>quarterly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/parttime-salaris-berekenen</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/fulltime-salaris-berekenen</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/salary-calculator-netherlands-expat</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/30-percent-ruling-calculator</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>quarterly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/zzp-netto-inkomen-berekenen</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/cao-salaris-berekenen</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>quarterly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/privacy</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/terms</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/about</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://www.nettogo.nl/contact</loc>
-    <lastmod>2025-08-18T18:56:05.398Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
   </url>
 </urlset>
