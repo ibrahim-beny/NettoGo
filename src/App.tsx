@@ -31,24 +31,24 @@ function App() {
   return (
     <Layout>
       <div className="max-w-6xl mx-auto">
-        {/* Hero Section */}
-        <header className="text-center mb-16">
-          <div className="mb-8">
+        {/* Hero Section - Compacter voor mobiel */}
+        <header className="text-center mb-8 lg:mb-16">
+          <div className="mb-4 lg:mb-8">
             <div className="inline-flex items-center justify-center mb-2">
               <img 
                 src={logoImage} 
                 alt="NettoGo Logo" 
-                className="w-56 h-56 object-contain drop-shadow-2xl"
+                className="w-32 h-32 lg:w-56 lg:h-56 object-contain drop-shadow-2xl"
                 width="224"
                 height="224"
                 loading="eager"
               />
             </div>
           </div>
-          <h1 className="text-6xl font-bold bg-gradient-to-r from-slate-800 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-6">
+          <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-slate-800 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-4 lg:mb-6">
             NettoGo
           </h1>
-          <p className="text-2xl text-slate-600 max-w-3xl mx-auto mb-8 leading-relaxed">
+          <p className="text-lg lg:text-2xl text-slate-600 max-w-3xl mx-auto mb-4 lg:mb-8 leading-relaxed px-4">
             De snelste manier om je netto salaris te berekenen. 
             Gebaseerd op de officiële Nederlandse belastingregels van 2025.
           </p>
@@ -76,26 +76,31 @@ function App() {
         )}
 
         {/* Main Calculator Section */}
-        <section className="grid grid-cols-1 xl:grid-cols-2 gap-10 mb-20" role="main" aria-label="Bruto Netto Calculator">
-          {/* Input Form */}
-          <article className="bg-white/70 backdrop-blur-xl rounded-3xl border border-white/50 shadow-2xl shadow-slate-200/50 p-8">
-            <header className="flex items-center space-x-3 mb-8">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
-                <span className="text-white text-lg" aria-hidden="true">📝</span>
+        <section className="space-y-10 mb-20" role="main" aria-label="Bruto Netto Calculator">
+          {/* Mobile-first layout: Result shown first on small screens, then form */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+            {/* Input Form - Order 2 on mobile, 1 on desktop */}
+            <article className="order-2 lg:order-1 bg-white/70 backdrop-blur-xl rounded-3xl border border-white/50 shadow-2xl shadow-slate-200/50 p-6 lg:p-8">
+              <header className="flex items-center space-x-3 mb-6 lg:mb-8">
+                <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
+                  <span className="text-white text-base lg:text-lg" aria-hidden="true">📝</span>
+                </div>
+                <h2 className="text-xl lg:text-2xl font-bold text-slate-800">
+                  Vul je gegevens in
+                </h2>
+              </header>
+              <div role="form" aria-label="Salarisgegevens invoeren voor bruto naar netto berekening">
+                <SalaryForm onCalculate={handleCalculate} />
               </div>
-              <h2 className="text-2xl font-bold text-slate-800">
-                Vul je gegevens in
-              </h2>
-            </header>
-            <div role="form" aria-label="Salarisgegevens invoeren voor bruto naar netto berekening">
-              <SalaryForm onCalculate={handleCalculate} />
-            </div>
-          </article>
+            </article>
 
-          {/* Results */}
-          <aside className="xl:col-span-1" aria-label="Netto salaris resultaten">
-            <NetResult result={result} isLoading={isLoading} />
-          </aside>
+            {/* Results - Order 1 on mobile (shown first), 2 on desktop */}
+            <aside className="order-1 lg:order-2" aria-label="Netto salaris resultaten">
+              <div className="sticky top-4">
+                <NetResult result={result} isLoading={isLoading} />
+              </div>
+            </aside>
+          </div>
         </section>
 
         {/* CTA Section */}

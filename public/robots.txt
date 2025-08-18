@@ -1,40 +1,31 @@
 User-agent: *
 Allow: /
 
-# Specific directives for search engines
-User-agent: Googlebot
-Allow: /
+# NettoGo Bruto Netto Calculator
+# Optimized for Dutch salary calculations
+
+Sitemap: https://www.nettogo.nl/sitemap.xml
+
+# Disallow error pages
+Disallow: /404
+Disallow: /500
+
+# Allow all main calculator pages
+Allow: /bruto-naar-netto
+Allow: /salaris-calculator
+Allow: /netto-salaris-berekenen
+Allow: /belastingtarieven-2025
+Allow: /vakantiegeld-berekenen
+Allow: /13e-maand-berekenen
+Allow: /loonheffing-berekenen
+Allow: /minimumloon-netto-2025
+
+# Allow expat specific pages
+Allow: /salary-calculator-netherlands-expat
+Allow: /30-percent-ruling-calculator
+
+# Allow ZZP pages
+Allow: /zzp-netto-inkomen-berekenen
+
+# Crawl-delay for respectful crawling
 Crawl-delay: 1
-
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Slurp
-Allow: /
-Crawl-delay: 1
-
-# Block AI crawlers that don't respect content
-User-agent: GPTBot
-Disallow: /
-
-User-agent: ChatGPT-User
-Disallow: /
-
-User-agent: CCBot
-Disallow: /
-
-User-agent: anthropic-ai
-Disallow: /
-
-User-agent: Claude-Web
-Disallow: /
-
-# Sitemap location
-Sitemap: https://nettoGo.vercel.app/sitemap.xml
-
-# Additional notes
-# NettoGo - Bruto Netto Calculator 2025
-# Gratis salaris berekenen voor Nederland
-# https://nettoGo.vercel.app/
-
