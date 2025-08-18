@@ -16,8 +16,8 @@ const urls = [
 
 // Genereer sitemap XML met correcte officiële structuur
 function generateSitemap() {
-  // ISO-8601 timestamp voor lastmod
-  const lastModified = new Date().toISOString();
+  // ISO-8601 timestamp voor lastmod (met timezone)
+  const lastModified = new Date().toISOString().replace('Z', '+00:00');
   
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -28,9 +28,6 @@ function generateSitemap() {
   <url>
     <loc>${siteUrl}${url.loc}</loc>
     <lastmod>${lastModified}</lastmod>`;
-
-    // changefreq en priority zijn optioneel - Google negeert ze grotendeels
-    // Voor nu laten we ze weg voor een cleaner sitemap
 
     // Voeg afbeeldingen toe alleen aan hoofdpagina
     if (url.loc === '/') {
@@ -67,8 +64,8 @@ function generateRobotsTxt() {
   return `User-agent: *
 Allow: /
 
-# NettoGo Bruto Netto Calculator
-# Optimized for Dutch salary calculations
+# NettoGo Bruto Netto Calculator 2025
+# Gratis Nederlandse bruto naar netto salarisberekening
 
 Sitemap: ${siteUrl}/sitemap.xml
 
@@ -76,22 +73,8 @@ Sitemap: ${siteUrl}/sitemap.xml
 Disallow: /404
 Disallow: /500
 
-# Allow all main calculator pages
-Allow: /bruto-naar-netto
-Allow: /salaris-calculator
-Allow: /netto-salaris-berekenen
-Allow: /belastingtarieven-2025
-Allow: /vakantiegeld-berekenen
-Allow: /13e-maand-berekenen
-Allow: /loonheffing-berekenen
-Allow: /minimumloon-netto-2025
-
-# Allow expat specific pages
-Allow: /salary-calculator-netherlands-expat
-Allow: /30-percent-ruling-calculator
-
-# Allow ZZP pages
-Allow: /zzp-netto-inkomen-berekenen
+# Allow indexing of all content
+Allow: /*
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1

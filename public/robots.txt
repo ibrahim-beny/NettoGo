@@ -1,8 +1,8 @@
 User-agent: *
 Allow: /
 
-# NettoGo Bruto Netto Calculator
-# Optimized for Dutch salary calculations
+# NettoGo Bruto Netto Calculator 2025
+# Gratis Nederlandse bruto naar netto salarisberekening
 
 Sitemap: https://www.nettogo.nl/sitemap.xml
 
@@ -10,22 +10,8 @@ Sitemap: https://www.nettogo.nl/sitemap.xml
 Disallow: /404
 Disallow: /500
 
-# Allow all main calculator pages
-Allow: /bruto-naar-netto
-Allow: /salaris-calculator
-Allow: /netto-salaris-berekenen
-Allow: /belastingtarieven-2025
-Allow: /vakantiegeld-berekenen
-Allow: /13e-maand-berekenen
-Allow: /loonheffing-berekenen
-Allow: /minimumloon-netto-2025
-
-# Allow expat specific pages
-Allow: /salary-calculator-netherlands-expat
-Allow: /30-percent-ruling-calculator
-
-# Allow ZZP pages
-Allow: /zzp-netto-inkomen-berekenen
+# Allow indexing of all content
+Allow: /*
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
