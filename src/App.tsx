@@ -86,10 +86,10 @@ function HomePage() {
 
         {/* Main Calculator Section */}
         <section className="space-y-10 mb-20" role="main" aria-label="Bruto Netto Calculator">
-          {/* Mobile-first layout: Result shown first on small screens, then form */}
+          {/* Layout: Input form always first on mobile, side-by-side on desktop */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
-            {/* Input Form - Order 2 on mobile, 1 on desktop */}
-            <article className="order-2 lg:order-1 bg-white/70 backdrop-blur-xl rounded-3xl border border-white/50 shadow-2xl shadow-slate-200/50 p-6 lg:p-8">
+            {/* Input Form - Always first on mobile, left on desktop */}
+            <article className="order-1 lg:order-1 bg-white/70 backdrop-blur-xl rounded-3xl border border-white/50 shadow-2xl shadow-slate-200/50 p-6 lg:p-8">
               <header className="flex items-center space-x-3 mb-6 lg:mb-8">
                 <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
                   <span className="text-white text-base lg:text-lg" aria-hidden="true">📝</span>
@@ -103,8 +103,8 @@ function HomePage() {
               </div>
             </article>
 
-            {/* Results - Order 1 on mobile (shown first), 2 on desktop */}
-            <aside className="order-1 lg:order-2" aria-label="Netto salaris resultaten">
+            {/* Results - Always second on mobile, right on desktop */}
+            <aside className="order-2 lg:order-2" aria-label="Netto salaris resultaten">
               <div className="sticky top-4">
                 <NetResult result={result} isLoading={isLoading} />
               </div>
