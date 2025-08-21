@@ -12,7 +12,7 @@ import { BlogPost } from './pages/BlogPost';
 import { Calculator } from './pages/Calculator';
 import { English } from './pages/English';
 import { CalcInput, CalcOutput, calculateNetMonthly } from './utils/calculator';
-import { User, TrendingUp, CheckCircle, Euro, Settings } from 'lucide-react';
+import { User } from 'lucide-react';
 import logoImage from './assets/uitgesneden_logo.png';
 
 function HomePage() {

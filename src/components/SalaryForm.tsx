@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CalcInput } from '../utils/calculator';
 import { validateSalaryInput, ValidationError } from '../utils/validators';
-import { Euro, Settings, Info, Clock, Percent, Calendar, ChevronDown } from 'lucide-react';
+import { Settings, Info, Clock, ChevronDown } from 'lucide-react';
 
 interface SalaryFormProps {
   onCalculate: (input: CalcInput) => void;
@@ -248,7 +248,7 @@ export const SalaryForm: React.FC<SalaryFormProps> = ({ onCalculate }) => {
             <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
               <h4 className="text-md font-semibold text-slate-800 mb-5 flex items-center gap-3">
                 <div className="w-6 h-6 bg-gradient-to-r from-pink-500 to-orange-500 rounded-lg flex items-center justify-center">
-                  <Calendar className="w-3 h-3 text-white" />
+                  <Clock className="w-3 h-3 text-white" />
                 </div>
                 Extra Uitkeringen
               </h4>

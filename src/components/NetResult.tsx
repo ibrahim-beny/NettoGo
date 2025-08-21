@@ -1,7 +1,7 @@
 import React from 'react';
 import { CalcOutput } from '../utils/calculator';
 import { formatCurrency } from '../utils/validators';
-import { TrendingUp, CheckCircle, Euro, Calculator, Calendar } from 'lucide-react';
+import { TrendingUp, CheckCircle, Calculator } from 'lucide-react';
 
 interface NetResultProps {
   result: CalcOutput | null;

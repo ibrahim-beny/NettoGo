@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calculator, FileText, Info, Shield, BookOpen, Mail, TrendingUp } from 'lucide-react';
+import { Calculator } from 'lucide-react';
 import logoImage from '../assets/uitgesneden_logo.png';
 
 interface LayoutProps {
