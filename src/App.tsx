@@ -1,11 +1,20 @@
 import { useState, useCallback } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { SalaryForm } from './components/SalaryForm';
 import { NetResult } from './components/NetResult';
+import { About } from './pages/About';
+import { Contact } from './pages/Contact';
+import { Privacy } from './pages/Privacy';
+import { Terms } from './pages/Terms';
+import { Blog } from './pages/Blog';
+import { BlogPost } from './pages/BlogPost';
+import { Calculator } from './pages/Calculator';
+import { English } from './pages/English';
 import { CalcInput, CalcOutput, calculateNetMonthly } from './utils/calculator';
 import logoImage from './assets/uitgesneden_logo.png';
 
-function App() {
+function HomePage() {
   const [result, setResult] = useState<CalcOutput | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -196,6 +205,24 @@ function App() {
         </section>
       </div>
     </Layout>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/hoe-bereken-je-netto-salaris-2025" element={<BlogPost />} />
+        <Route path="/calculator" element={<Calculator />} />
+        <Route path="/en" element={<English />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -3,15 +3,53 @@ import path from 'path';
 
 const siteUrl = 'https://www.nettogo.nl';
 
-// Definieer alleen bestaande URL's voor NettoGo (om 404 errors te voorkomen)
+// Definieer alle URL's voor NettoGo
 const urls = [
   {
     loc: '/',
     changefreq: 'daily',
     priority: '1.0'
+  },
+  {
+    loc: '/calculator',
+    changefreq: 'weekly',
+    priority: '0.9'
+  },
+  {
+    loc: '/about',
+    changefreq: 'monthly',
+    priority: '0.8'
+  },
+  {
+    loc: '/blog',
+    changefreq: 'weekly',
+    priority: '0.8'
+  },
+  {
+    loc: '/blog/hoe-bereken-je-netto-salaris-2025',
+    changefreq: 'monthly',
+    priority: '0.7'
+  },
+  {
+    loc: '/contact',
+    changefreq: 'monthly',
+    priority: '0.6'
+  },
+  {
+    loc: '/privacy',
+    changefreq: 'monthly',
+    priority: '0.5'
+  },
+  {
+    loc: '/terms',
+    changefreq: 'monthly',
+    priority: '0.5'
+  },
+  {
+    loc: '/en',
+    changefreq: 'monthly',
+    priority: '0.7'
   }
-  // Andere URL's worden alleen toegevoegd als ze echt bestaan
-  // Voor nu beginnen we met alleen de homepage die gegarandeerd werkt
 ];
 
 // Genereer sitemap XML met correcte officiële structuur
@@ -26,15 +64,9 @@ function generateSitemap() {
     sitemap += `
   <url>
     <loc>${siteUrl}${url.loc}</loc>
-    <lastmod>${lastModified}</lastmod>`;
-
-    // Tijdelijk uitgeschakeld om XML probleem op te lossen
-    // Image tags kunnen later weer toegevoegd worden
-    // if (url.loc === '/') {
-    //   // image content hier
-    // }
-
-    sitemap += `
+    <lastmod>${lastModified}</lastmod>
+    <changefreq>${url.changefreq}</changefreq>
+    <priority>${url.priority}</priority>
   </url>`;
   });
 

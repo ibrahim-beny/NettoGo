@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logoImage from '../assets/uitgesneden_logo.png';
 
 interface LayoutProps {
@@ -23,7 +24,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Footer */}
       <footer className="relative bg-white/90 backdrop-blur-xl border-t border-blue-200/30 mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="space-y-4">
               <div className="flex items-center space-x-3 mb-4">
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
@@ -41,47 +42,61 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             </div>
             
             <div className="space-y-4">
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-blue-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white text-sm" aria-hidden="true">ℹ️</span>
-                </div>
-                <h3 className="text-lg font-semibold text-blue-900">
-                  Nederlandse Belastingregels 2025
-                </h3>
-              </div>
+              <h3 className="text-lg font-semibold text-blue-900 mb-4">Calculator</h3>
               <ul className="text-blue-700 space-y-2">
-                <li className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" aria-hidden="true"></span>
-                  <span>Box 1 belastingtarieven 2025</span>
+                <li>
+                  <Link to="/" className="hover:text-blue-900 transition-colors">
+                    Start Calculator
+                  </Link>
                 </li>
-                <li className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full" aria-hidden="true"></span>
-                  <span>Algemene heffingskorting berekening</span>
+                <li>
+                  <Link to="/calculator" className="hover:text-blue-900 transition-colors">
+                    Over Calculator
+                  </Link>
                 </li>
-                <li className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 bg-blue-600 rounded-full" aria-hidden="true"></span>
-                  <span>Arbeidskorting automatisch toegepast</span>
+                <li>
+                  <Link to="/blog/hoe-bereken-je-netto-salaris-2025" className="hover:text-blue-900 transition-colors">
+                    Hoe Werkt Het?
+                  </Link>
                 </li>
-                <li className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 bg-indigo-600 rounded-full" aria-hidden="true"></span>
-                  <span>Vakantiegeld 8% standaard</span>
+              </ul>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-blue-900 mb-4">Informatie</h3>
+              <ul className="text-blue-700 space-y-2">
+                <li>
+                  <Link to="/about" className="hover:text-blue-900 transition-colors">
+                    Over NettoGo
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/blog" className="hover:text-blue-900 transition-colors">
+                    Blog & Artikelen
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="hover:text-blue-900 transition-colors">
+                    Contact
+                  </Link>
                 </li>
               </ul>
             </div>
             
             <div className="space-y-4">
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white text-sm" aria-hidden="true">🔒</span>
-                </div>
-                <h3 className="text-lg font-semibold text-blue-900">
-                  Privacy & Veiligheid
-                </h3>
-              </div>
-              <p className="text-blue-700 leading-relaxed">
-                <strong>100% privacy-vriendelijk</strong> - je salarisgegevens worden nooit opgeslagen. 
-                Alle <strong>netto salaris berekeningen</strong> gebeuren lokaal in je browser zonder data naar servers.
-              </p>
+              <h3 className="text-lg font-semibold text-blue-900 mb-4">Rechtelijk</h3>
+              <ul className="text-blue-700 space-y-2">
+                <li>
+                  <Link to="/privacy" className="hover:text-blue-900 transition-colors">
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/terms" className="hover:text-blue-900 transition-colors">
+                    Algemene Voorwaarden
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
           
@@ -102,6 +117,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 </p>
               </div>
               <div className="flex items-center space-x-4 text-sm text-blue-600">
+                <div className="flex items-center space-x-2">
+                  <Link to="/" className="hover:text-blue-800 transition-colors">NL</Link>
+                  <span className="text-slate-400">|</span>
+                  <Link to="/en" className="hover:text-blue-800 transition-colors">EN</Link>
+                </div>
                 <span>🚀 Powered by React + TypeScript</span>
                 <span>🎨 Styled with Tailwind CSS</span>
               </div>
