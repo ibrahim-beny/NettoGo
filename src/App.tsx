@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { SalaryForm } from './components/SalaryForm';
 import { NetResult } from './components/NetResult';
-import { SEO } from './components/SEO';
 import { About } from './pages/About';
 import { Contact } from './pages/Contact';
 import { Privacy } from './pages/Privacy';
@@ -12,7 +11,6 @@ import { Blog } from './pages/Blog';
 import { BlogPost } from './pages/BlogPost';
 import { Calculator } from './pages/Calculator';
 import { English } from './pages/English';
-import { NotFound } from './pages/NotFound';
 import { CalcInput, CalcOutput, calculateNetMonthly } from './utils/calculator';
 import { User } from 'lucide-react';
 import logoImage from './assets/uitgesneden_logo.png';
@@ -42,12 +40,6 @@ function HomePage() {
 
   return (
     <Layout>
-      <SEO 
-        title="NettoGo - Bruto naar Netto Salaris Calculator 2025 | Gratis Nederlandse Calculator"
-        description="De snelste manier om je netto salaris te berekenen. Gebaseerd op de officiële Nederlandse belastingregels van 2025. Inclusief loonheffing, vakantiegeld en 13e maand berekening."
-        canonical="/"
-        keywords="bruto netto calculator, salaris berekening, netto salaris, Nederlandse belastingen 2025, loonheffing, vakantiegeld, 13e maand, belastingtarieven"
-      />
       <div className="max-w-6xl mx-auto">
         {/* Hero Section - Compacter voor mobiel */}
         <header className="text-center mb-8 lg:mb-16">
@@ -230,7 +222,6 @@ function App() {
         <Route path="/blog/hoe-bereken-je-netto-salaris-2025" element={<BlogPost />} />
         <Route path="/calculator" element={<Calculator />} />
         <Route path="/en" element={<English />} />
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

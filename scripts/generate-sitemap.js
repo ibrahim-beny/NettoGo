@@ -3,73 +3,62 @@ import path from 'path';
 
 const siteUrl = 'https://www.nettogo.nl';
 
-// Definieer alle URL's voor NettoGo met uitgebreide SEO informatie
+// Definieer alle URL's voor NettoGo
 const urls = [
   {
     loc: '/',
     changefreq: 'daily',
-    priority: '1.0',
-    description: 'NettoGo - Bruto naar Netto Salaris Calculator 2025'
+    priority: '1.0'
   },
   {
     loc: '/calculator',
     changefreq: 'weekly',
-    priority: '0.9',
-    description: 'Bruto Netto Calculator - Bereken je netto salaris'
+    priority: '0.9'
   },
   {
     loc: '/about',
     changefreq: 'monthly',
-    priority: '0.8',
-    description: 'Over NettoGo - Nederlandse Salaris Calculator'
+    priority: '0.8'
   },
   {
     loc: '/blog',
     changefreq: 'weekly',
-    priority: '0.8',
-    description: 'Blog - Tips en informatie over salaris berekening'
+    priority: '0.8'
   },
   {
     loc: '/blog/hoe-bereken-je-netto-salaris-2025',
     changefreq: 'monthly',
-    priority: '0.7',
-    description: 'Hoe bereken je je netto salaris in 2025'
+    priority: '0.7'
   },
   {
     loc: '/contact',
     changefreq: 'monthly',
-    priority: '0.6',
-    description: 'Contact NettoGo - Vragen over salaris berekening'
+    priority: '0.6'
   },
   {
     loc: '/privacy',
     changefreq: 'monthly',
-    priority: '0.5',
-    description: 'Privacy Policy NettoGo'
+    priority: '0.5'
   },
   {
     loc: '/terms',
     changefreq: 'monthly',
-    priority: '0.5',
-    description: 'Algemene Voorwaarden NettoGo'
+    priority: '0.5'
   },
   {
     loc: '/en',
     changefreq: 'monthly',
-    priority: '0.7',
-    description: 'NettoGo - Gross to Net Salary Calculator 2025'
+    priority: '0.7'
   }
 ];
 
-// Genereer sitemap XML met correcte officiële structuur en extra SEO informatie
+// Genereer sitemap XML met correcte officiële structuur
 function generateSitemap() {
   // ISO-8601 timestamp voor lastmod (met timezone)
   const lastModified = new Date().toISOString().replace('Z', '+00:00');
   
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">`;
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
 
   urls.forEach(url => {
     sitemap += `
@@ -78,10 +67,6 @@ function generateSitemap() {
     <lastmod>${lastModified}</lastmod>
     <changefreq>${url.changefreq}</changefreq>
     <priority>${url.priority}</priority>
-    <image:image>
-      <image:loc>${siteUrl}/NettoGo_logo.png</image:loc>
-      <image:title>${url.description}</image:title>
-    </image:image>
   </url>`;
   });
 
@@ -91,7 +76,7 @@ function generateSitemap() {
   return sitemap;
 }
 
-// Genereer robots.txt met betere crawler instructies
+// Genereer robots.txt
 function generateRobotsTxt() {
   return `User-agent: *
 Allow: /
@@ -101,26 +86,15 @@ Allow: /
 
 Sitemap: ${siteUrl}/sitemap.xml
 
-# Expliciet toestaan van alle belangrijke pagina's
-Allow: /about
-Allow: /contact
-Allow: /privacy
-Allow: /terms
-Allow: /blog
-Allow: /calculator
-Allow: /en
-
-# Alleen error pagina's blokkeren
+# Disallow error pages
 Disallow: /404
 Disallow: /500
-Disallow: /error
 
-# Crawl-delay voor respectvolle crawling
+# Allow indexing of all content
+Allow: /*
+
+# Crawl-delay for respectful crawling
 Crawl-delay: 1
-
-# Extra informatie voor crawlers
-# NettoGo is een React SPA - alle routes zijn toegankelijk
-# JavaScript is vereist voor volledige functionaliteit
 `;
 }
 

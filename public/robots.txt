@@ -6,23 +6,12 @@ Allow: /
 
 Sitemap: https://www.nettogo.nl/sitemap.xml
 
-# Expliciet toestaan van alle belangrijke pagina's
-Allow: /about
-Allow: /contact
-Allow: /privacy
-Allow: /terms
-Allow: /blog
-Allow: /calculator
-Allow: /en
-
-# Alleen error pagina's blokkeren
+# Disallow error pages
 Disallow: /404
 Disallow: /500
-Disallow: /error
 
-# Crawl-delay voor respectvolle crawling
+# Allow indexing of all content
+Allow: /*
+
+# Crawl-delay for respectful crawling
 Crawl-delay: 1
-
-# Extra informatie voor crawlers
-# NettoGo is een React SPA - alle routes zijn toegankelijk
-# JavaScript is vereist voor volledige functionaliteit
