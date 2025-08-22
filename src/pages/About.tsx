@@ -1,10 +1,17 @@
 import React from 'react';
 import { Layout } from '../components/Layout';
 import { Link } from 'react-router-dom';
+import { SEO } from '../components/SEO';
 
 export const About: React.FC = () => {
   return (
     <Layout>
+      <SEO 
+        title="Over NettoGo - Nederlandse Bruto Netto Calculator 2025"
+        description="Leer meer over NettoGo, de meest betrouwbare bruto naar netto calculator voor Nederland. Ontwikkeld met precisie en privacy voorop."
+        canonical="/about"
+        keywords="over nettoGo, Nederlandse calculator, bruto netto, salaris berekening, privacy, belastingen"
+      />
       <div className="max-w-4xl mx-auto">
         {/* Hero Section */}
         <header className="text-center mb-12">
